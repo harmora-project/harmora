@@ -40,7 +40,6 @@ The repository includes:
 │   ├── run_adaptive_precision_ablation.py
 │   └── run_runtime_analysis.py
 ├── reference/                     # Reference data, figures, and LaTeX tables
-├── paper/                         # Manuscript and supplementary files
 ├── tests/                         # Unit tests
 ├── docs/                          # Additional documentation
 ├── pyproject.toml                 # Package configuration
