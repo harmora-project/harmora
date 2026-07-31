@@ -1,9 +1,0 @@
-cff-version: 1.2.0
-message: "Please cite the Harmora paper when using this code or its artifacts."
-title: "Harmora: Label-Free Selection of Representations in Language Embedding Models via Laplacian Harmonics"
-type: software
-version: 1.0.0
-date-released: 2026-07-29
-license: MIT
-authors:
-  - name: "Harmora Authors"
