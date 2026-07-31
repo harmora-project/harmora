@@ -1,6 +1,6 @@
 # Harmora
 
-Official implementation and reproducibility package for:
+Official implementation and experiment package for:
 
 > **Harmora: Label-Free Selection of Representations in Language Embedding Models via Laplacian Harmonics**
 
@@ -19,7 +19,7 @@ The repository includes:
 - bandwidth and spectral-depth analyses;
 - adaptive-precision experiments;
 - runtime and eigensolver analyses;
-- tests and validation scripts.
+- tests for the main components.
 
 ## Repository structure
 
@@ -34,12 +34,9 @@ The repository includes:
 ├── scripts/
 │   ├── check_environment.py
 │   ├── run_full_pipeline.py
-│   ├── run_paper_analyses.py
-│   ├── reproduce_paper.py
-│   ├── validate_reproduction.py
-│   └── run_smoke_test.py
+│   └── run_paper_analyses.py
 ├── experiments/                   # Analysis scripts
-├── reference/                     # Reference data, figures, and tables
+├── reference/                     # Reference data and paper assets
 ├── paper/                         # Manuscript and supplementary files
 ├── tests/                         # Tests
 ├── docs/                          # Additional documentation
@@ -48,7 +45,7 @@ The repository includes:
 └── LICENSE                        # License
 ```
 
-Generated files are written to local output directories such as:
+Generated files are written to local directories such as:
 
 ```text
 artifacts/
@@ -129,51 +126,6 @@ This script checks:
 - the required Python libraries;
 - the selected computing device;
 - the included metric implementations.
-
-## Quick reproduction
-
-This workflow generates the provided figures, LaTeX tables, and result CSV files from the reference files included in the repository.
-
-It does not download models or datasets.
-
-Run:
-
-```bash
-python scripts/reproduce_paper.py
-python scripts/validate_reproduction.py
-```
-
-The generated files are written to:
-
-```text
-artifacts/paper/
-```
-
-To recreate the output directory and replace existing generated files, run:
-
-```bash
-python scripts/reproduce_paper.py --force
-```
-
-The validation script checks the experiment structure and the main reported results.
-
-## Smoke test
-
-Run the smoke test before starting the full experiment:
-
-```bash
-python scripts/run_smoke_test.py
-```
-
-The smoke test checks:
-
-1. experiment configuration;
-2. task sampling;
-3. deterministic data splits;
-4. evaluators and aggregation;
-5. metric computation;
-6. reference artifact generation;
-7. validation of the main result files.
 
 ## Full experiment
 
@@ -386,16 +338,15 @@ The following paths are used for local data and generated outputs:
 cache/models/
 cache/data/
 outputs/full_experiment/
-artifacts/paper/
 artifacts/generated/
 ```
 
 These paths should be excluded through `.gitignore`.
 
-The reference result files required by the reproduction and validation scripts are stored in:
+Reference files used by the analysis code are stored under:
 
 ```text
-reference/data/
+reference/
 ```
 
 ## Tests
