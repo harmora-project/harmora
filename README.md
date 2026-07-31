@@ -4,13 +4,13 @@ Official implementation and reproducibility package for:
 
 > **Harmora: Label-Free Selection of Representations in Language Embedding Models via Laplacian Harmonics**
 
-This repository contains the code, experiment configurations, analyses, and reference results used in the paper.
+This repository contains the code, experiment configurations, analysis scripts, and reference results used in the paper.
 
 ## Main features
 
 The repository includes:
 
-- the fixed **7-model × 11-task × 4-seed** experiment configuration;
+- a fixed **7-model × 11-task × 4-seed** experiment configuration;
 - the Harmora metric;
 - eight label-free baseline metrics;
 - layer-wise downstream evaluation;
@@ -19,15 +19,18 @@ The repository includes:
 - bandwidth and spectral-depth analyses;
 - adaptive-precision experiments;
 - runtime and eigensolver analyses;
+- tests and validation scripts.
 
 ## Repository structure
 
 ```text
-harmora-paper-code/
+.
 ├── configs/
 │   └── paper.yaml                 # Main experiment configuration
-├── src/harmora_downstream/        # Data, encoding, metrics, and evaluation
-├── harmora_metrics/metrics/       # Harmora and baseline implementations
+├── src/
+│   └── harmora_downstream/        # Data, encoding, and evaluation code
+├── harmora_metrics/
+│   └── metrics/                   # Harmora and baseline metrics
 ├── scripts/
 │   ├── check_environment.py
 │   ├── run_full_pipeline.py
@@ -35,56 +38,33 @@ harmora-paper-code/
 │   ├── reproduce_paper.py
 │   ├── validate_reproduction.py
 │   └── run_smoke_test.py
-├── experiments/                   # Paper analysis scripts
-├── reference/                     # Reference data, figures, and LaTeX tables
-├── paper/                         # Manuscript, supplement, and checklist
-├── tests/                         # Unit tests
-├── docs/                          # Documentation
-└── artifacts/                     # Locally generated files
+├── experiments/                   # Analysis scripts
+├── reference/                     # Reference data, figures, and tables
+├── paper/                         # Manuscript and supplementary files
+├── tests/                         # Tests
+├── docs/                          # Additional documentation
+├── environment.yml                # Conda environment
+├── CITATION.cff                   # Citation information
+└── LICENSE                        # License
 ```
 
-## Quick reproduction
-
-To generate the reference figures, LaTeX tables, and result CSV files, run:
-
-```bash
-python scripts/reproduce_paper.py
-python scripts/validate_reproduction.py
-```
-
-The generated files are written to:
+Generated files are written to local output directories such as:
 
 ```text
-artifacts/paper/
+artifacts/
+outputs/
+cache/
 ```
 
-This process does not download models or datasets.
+## Requirements
 
-To recreate the artifact directory and replace existing files, run:
+Python 3.10 or newer is required.
 
-```bash
-python scripts/reproduce_paper.py --force
-```
+Python 3.11 is recommended.
 
-### Reference results
-
-The validation script checks the experiment dimensions and the main reported results:
-
-| Result | Value |
-|---|---:|
-| Within-model Harmora Spearman | `0.432387` |
-| Strongest within-model baseline | `0.270963` |
-| Selected-candidate percentile | `0.845779` |
-| Cross-model NDCG@1 | `0.843242` |
-| Cross-model NDCG@3 | `0.795474` |
-| Top-5 overlap | `0.372727` |
-| Exhaustive runtime | `762.298868 s` |
-| Harmora-shortlist runtime | `166.995998 s` |
-| Speedup | `4.564773×` |
+Run all commands from the root directory of the repository.
 
 ## Installation
-
-Python 3.10 or newer is required. Python 3.11 is recommended.
 
 ### Linux and macOS
 
@@ -95,7 +75,7 @@ python -m venv .venv
 source .venv/bin/activate
 ```
 
-Install the package:
+Upgrade `pip` and install the package:
 
 ```bash
 python -m pip install --upgrade pip
@@ -111,7 +91,7 @@ py -3.11 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
 
-Install the package:
+Upgrade `pip` and install the package:
 
 ```powershell
 python -m pip install --upgrade pip
@@ -128,7 +108,7 @@ pip install -e ".[dev]"
 
 ### Conda installation
 
-A Conda environment file is also available:
+A Conda environment file is also provided:
 
 ```bash
 conda env create -f environment.yml
@@ -150,6 +130,33 @@ This script checks:
 - the selected computing device;
 - the included metric implementations.
 
+## Quick reproduction
+
+This workflow generates the provided figures, LaTeX tables, and result CSV files from the reference files included in the repository.
+
+It does not download models or datasets.
+
+Run:
+
+```bash
+python scripts/reproduce_paper.py
+python scripts/validate_reproduction.py
+```
+
+The generated files are written to:
+
+```text
+artifacts/paper/
+```
+
+To recreate the output directory and replace existing generated files, run:
+
+```bash
+python scripts/reproduce_paper.py --force
+```
+
+The validation script checks the experiment structure and the main reported results.
+
 ## Smoke test
 
 Run the smoke test before starting the full experiment:
@@ -158,14 +165,15 @@ Run the smoke test before starting the full experiment:
 python scripts/run_smoke_test.py
 ```
 
-The smoke test performs:
+The smoke test checks:
 
-1. unit tests for configuration and sampling;
-2. tests for deterministic data splits;
-3. tests for evaluators and aggregation;
-4. tests for metric computation;
-5. reference artifact generation;
-6. validation of the main paper results.
+1. experiment configuration;
+2. task sampling;
+3. deterministic data splits;
+4. evaluators and aggregation;
+5. metric computation;
+6. reference artifact generation;
+7. validation of the main result files.
 
 ## Full experiment
 
@@ -177,36 +185,41 @@ Run the complete pipeline with:
 python scripts/run_full_pipeline.py
 ```
 
-The pipeline uses cached task samples and embeddings. An interrupted run can normally continue without repeating completed work.
+The pipeline caches task samples and embeddings. An interrupted run can normally continue without repeating completed work.
 
 ### Pipeline stages
 
-The pipeline contains five stages:
+The pipeline contains five stages.
 
-1. `samples`  
-   Resolves the eleven tasks and creates one fixed sample for each task.
+#### 1. Samples
 
-2. `downstream`  
-   Evaluates every model-layer candidate using four fixed seeds.
+The `samples` stage resolves the eleven tasks and creates one fixed sample for each task.
 
-3. `metrics`  
-   Computes Harmora and the eight baseline metrics on the cached representations.
+#### 2. Downstream evaluation
 
-4. `aggregate`  
-   Aggregates downstream utilities across the four seeds.
+The `downstream` stage evaluates every model-layer candidate using four fixed seeds.
 
-5. `correlate`  
-   Computes within-model and cross-model evaluation results.
+#### 3. Label-free metrics
 
-The outputs are written to:
+The `metrics` stage computes Harmora and the eight baseline metrics on the cached representations.
+
+#### 4. Aggregation
+
+The `aggregate` stage aggregates downstream utilities across the four seeds.
+
+#### 5. Correlation analysis
+
+The `correlate` stage computes the within-model and cross-model evaluation results.
+
+The full experiment outputs are written to:
 
 ```text
 outputs/full_experiment/
 ```
 
-### Resume from a specific stage
+### Resume from a stage
 
-To continue from the metrics stage:
+To continue from the metrics stage, run:
 
 ```bash
 python scripts/run_full_pipeline.py --from-stage metrics
@@ -244,7 +257,7 @@ python scripts/run_full_pipeline.py `
   --to-stage correlate
 ```
 
-Use `--overwrite` only when the cached samples, embeddings, and completed results must be rebuilt.
+Use `--overwrite` only when cached samples, embeddings, and completed results must be rebuilt.
 
 ## Paper analyses
 
@@ -272,7 +285,7 @@ artifacts/generated/
 
 ### Run selected analyses
 
-To run only the within-model, cross-model, and spectral analyses:
+To run the within-model, cross-model, and spectral analyses:
 
 ```bash
 python scripts/run_paper_analyses.py --only within cross spectral
@@ -290,17 +303,17 @@ To run the runtime analysis without the real-runtime experiment:
 python scripts/run_paper_analyses.py --only runtime --skip-real-runtime
 ```
 
-The reference vector and raster figures are stored in:
+Reference vector and raster figures are stored in:
 
 ```text
 reference/figures/
 ```
 
-Small visual differences may appear when figures are generated on different operating systems. These differences can be caused by fonts or Matplotlib backends.
+Small visual differences may appear when figures are generated on different systems. These differences can be caused by fonts, operating systems, or Matplotlib backends.
 
 ## Experiment configuration
 
-The complete experiment configuration is available in:
+The main experiment configuration is available in:
 
 [`configs/paper.yaml`](configs/paper.yaml)
 
@@ -355,50 +368,31 @@ The experiment uses eleven tasks.
 | Candidate pool | `106` model-layer candidates per task |
 | Shortlist size | `5` |
 
-When the following option is enabled, the configuration loader does not allow silent changes to the seven models or eleven tasks:
+The configuration contains:
 
 ```yaml
 lock_exact_experiment_set: true
 ```
 
-## Reproducibility options
-
-There are two main ways to use this repository.
-
-### Reference result reproduction
-
-Use this option to generate the reference figures, tables, and result files without downloading models or datasets:
-
-```bash
-python scripts/reproduce_paper.py
-python scripts/validate_reproduction.py
-```
-
-### Independent computational rerun
-
-Use this option to independently recompute the embeddings, downstream utilities, label-free scores, and analyses:
-
-```bash
-python scripts/run_full_pipeline.py
-python scripts/run_paper_analyses.py
-```
+When this option is enabled, the configuration loader does not allow silent changes to the seven models or eleven tasks.
 
 ## Data and cache policy
 
 Downloaded datasets, pretrained model weights, and large embedding caches are not stored in the repository.
 
-The following directories are used only for local files:
+The following paths are used for local data and generated outputs:
 
 ```text
 cache/models/
 cache/data/
 outputs/full_experiment/
+artifacts/paper/
 artifacts/generated/
 ```
 
-These paths are excluded through `.gitignore`.
+These paths should be excluded through `.gitignore`.
 
-The reference result files required for validation are stored in:
+The reference result files required by the reproduction and validation scripts are stored in:
 
 ```text
 reference/data/
@@ -425,7 +419,7 @@ pytest -q tests
 
 ## Citation
 
-Citation metadata is provided in:
+Citation information is provided in:
 
 [`CITATION.cff`](CITATION.cff)
 
