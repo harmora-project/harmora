@@ -9,7 +9,7 @@ description = "Reproducibility package for Harmora: label-free model-layer selec
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
-authors = [{name = "Harmora Authors"}]
+authors = [{name = "Anonymous Authors"}]
 dependencies = [
   "torch>=2.2",
   "transformers>=4.40,<6",
