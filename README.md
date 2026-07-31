@@ -4,18 +4,16 @@ Official implementation and experiment package for:
 
 > **Harmora: Label-Free Selection of Representations in Language Embedding Models via Laplacian Harmonics**
 
-This repository contains the code, experiment configurations, analysis scripts, and reference results used in the paper.
+This repository contains the code, experiment configuration, analysis scripts, tests, and reference files used in the paper.
 
 ## Main features
 
 The repository includes:
 
 - a fixed **7-model × 11-task × 4-seed** experiment configuration;
-- the Harmora metric;
-- eight label-free baseline metrics;
+- the Harmora metric and eight label-free baseline metrics;
 - layer-wise downstream evaluation;
-- within-model representation selection;
-- cross-model representation selection;
+- within-model and cross-model representation selection;
 - bandwidth and spectral-depth analyses;
 - adaptive-precision experiments;
 - runtime and eigensolver analyses;
@@ -28,36 +26,41 @@ The repository includes:
 ├── configs/
 │   └── paper.yaml                 # Main experiment configuration
 ├── src/
-│   └── harmora_downstream/        # Data, encoding, and evaluation code
+│   └── harmora_downstream/        # Data, encoding, evaluation, and analysis pipeline
 ├── harmora_metrics/
-│   └── metrics/                   # Harmora and baseline metrics
+│   └── metrics/                   # Harmora and baseline metric implementations
 ├── scripts/
-│   ├── check_environment.py
-│   ├── run_full_pipeline.py
-│   └── run_paper_analyses.py
-├── experiments/                   # Analysis scripts
-├── reference/                     # Reference data and paper assets
+│   ├── check_environment.py       # Check the local environment
+│   ├── run_full_pipeline.py       # Run the full experiment pipeline
+│   └── run_paper_analyses.py      # Generate the paper analyses
+├── experiments/
+│   ├── make_within_model_results.py
+│   ├── make_cross_model_results.py
+│   ├── make_spectral_results.py
+│   ├── run_adaptive_precision_ablation.py
+│   └── run_runtime_analysis.py
+├── reference/                     # Reference data, figures, and LaTeX tables
 ├── paper/                         # Manuscript and supplementary files
-├── tests/                         # Tests
+├── tests/                         # Unit tests
 ├── docs/                          # Additional documentation
+├── pyproject.toml                 # Package configuration
+├── requirements.txt               # Python dependencies
 ├── environment.yml                # Conda environment
 ├── CITATION.cff                   # Citation information
 └── LICENSE                        # License
 ```
 
-Generated files are written to local directories such as:
+Generated files are written to local directories under:
 
 ```text
-artifacts/
-outputs/
 cache/
+outputs/
+artifacts/
 ```
 
 ## Requirements
 
-Python 3.10 or newer is required.
-
-Python 3.11 is recommended.
+Python 3.10 or newer is required. Python 3.11 is recommended.
 
 Run all commands from the root directory of the repository.
 
@@ -97,7 +100,7 @@ pip install -e .
 
 ### Development installation
 
-To install the development and testing dependencies, run:
+To install the testing dependencies, run:
 
 ```bash
 pip install -e ".[dev]"
@@ -114,18 +117,13 @@ conda activate harmora
 
 ## Environment check
 
-Before running the experiments, check the environment:
+Before running the experiment, check the local environment:
 
 ```bash
 python scripts/check_environment.py
 ```
 
-This script checks:
-
-- the configured models and tasks;
-- the required Python libraries;
-- the selected computing device;
-- the included metric implementations.
+This command reports the Python version, operating system, selected device, configured models and tasks, output path, required libraries, and the bundled metric package.
 
 ## Full experiment
 
@@ -137,33 +135,19 @@ Run the complete pipeline with:
 python scripts/run_full_pipeline.py
 ```
 
-The pipeline caches task samples and embeddings. An interrupted run can normally continue without repeating completed work.
+The pipeline uses cached task samples, embeddings, splits, and completed results when they are available.
 
 ### Pipeline stages
 
-The pipeline contains five stages.
+The pipeline contains five stages:
 
-#### 1. Samples
+1. `samples` — creates one fixed sample for each selected task;
+2. `downstream` — evaluates each model-layer candidate using the selected seeds;
+3. `metrics` — computes Harmora and the eight baseline metrics;
+4. `aggregate` — aggregates downstream results across seeds;
+5. `correlate` — computes within-model and cross-model evaluation results.
 
-The `samples` stage resolves the eleven tasks and creates one fixed sample for each task.
-
-#### 2. Downstream evaluation
-
-The `downstream` stage evaluates every model-layer candidate using four fixed seeds.
-
-#### 3. Label-free metrics
-
-The `metrics` stage computes Harmora and the eight baseline metrics on the cached representations.
-
-#### 4. Aggregation
-
-The `aggregate` stage aggregates downstream utilities across the four seeds.
-
-#### 5. Correlation analysis
-
-The `correlate` stage computes the within-model and cross-model evaluation results.
-
-The full experiment outputs are written to:
+The main outputs are written to:
 
 ```text
 outputs/full_experiment/
@@ -171,7 +155,7 @@ outputs/full_experiment/
 
 ### Resume from a stage
 
-To continue from the metrics stage, run:
+To continue from the metrics stage:
 
 ```bash
 python scripts/run_full_pipeline.py --from-stage metrics
@@ -187,9 +171,9 @@ python scripts/run_full_pipeline.py \
   --to-stage aggregate
 ```
 
-### Run a small experiment
+### Run a smaller experiment
 
-A smaller run can be used for testing or debugging:
+A smaller run can be used for testing:
 
 ```bash
 python scripts/run_full_pipeline.py \
@@ -209,25 +193,23 @@ python scripts/run_full_pipeline.py `
   --to-stage correlate
 ```
 
-Use `--overwrite` only when cached samples, embeddings, and completed results must be rebuilt.
+Use `--overwrite` only when existing samples, embeddings, splits, metrics, and completed results must be rebuilt.
 
 ## Paper analyses
 
-After the full experiment finishes, generate the paper analyses with:
+After the full experiment finishes, generate the analyses used in the paper:
 
 ```bash
 python scripts/run_paper_analyses.py
 ```
 
-This command generates:
+This command runs five analysis groups:
 
-- within-model ranking figures and tables;
-- cross-model selection figures and tables;
-- bandwidth analyses;
-- spectral-depth analyses;
-- adaptive-precision experiments;
-- runtime analyses;
-- eigensolver analyses.
+- within-model analysis;
+- cross-model analysis;
+- bandwidth and spectral-depth analysis;
+- adaptive-precision analysis;
+- runtime and eigensolver analysis.
 
 The generated files are written to:
 
@@ -237,35 +219,35 @@ artifacts/generated/
 
 ### Run selected analyses
 
-To run the within-model, cross-model, and spectral analyses:
+Run the within-model, cross-model, and spectral analyses:
 
 ```bash
 python scripts/run_paper_analyses.py --only within cross spectral
 ```
 
-To run the adaptive-precision analysis on a CUDA device:
+Run the adaptive-precision analysis with automatic device selection:
+
+```bash
+python scripts/run_paper_analyses.py --only precision --device auto
+```
+
+Request CUDA for the adaptive-precision analysis:
 
 ```bash
 python scripts/run_paper_analyses.py --only precision --device cuda
 ```
 
-To run the runtime analysis without the real-runtime experiment:
+Run the runtime analysis without the real-cache benchmark:
 
 ```bash
 python scripts/run_paper_analyses.py --only runtime --skip-real-runtime
 ```
 
-Reference vector and raster figures are stored in:
-
-```text
-reference/figures/
-```
-
-Small visual differences may appear when figures are generated on different systems. These differences can be caused by fonts, operating systems, or Matplotlib backends.
+Small visual differences may appear when figures are generated on different systems because fonts and Matplotlib backends can differ.
 
 ## Experiment configuration
 
-The main experiment configuration is available in:
+The main experiment configuration is stored in:
 
 [`configs/paper.yaml`](configs/paper.yaml)
 
@@ -308,16 +290,16 @@ The experiment uses eleven tasks.
 - STSBenchmark
 - SICK-R
 
-### Fixed settings
+### Main settings
 
 | Setting | Value |
 |---|---|
 | Downstream seeds | `11, 22, 33, 44` |
-| Shared sample seed | `2025` |
+| Shared sampling seed | `2025` |
 | Maximum task sample size | `512` |
 | Harmora bandwidth | `K = 10` |
-| Harmora variance | `sigma² = 1` |
-| Candidate pool | `106` model-layer candidates per task |
+| Harmora variance parameter | `sigma² = 1` |
+| Candidate pool | `106` model-layer representations per task |
 | Shortlist size | `5` |
 
 The configuration contains:
@@ -326,24 +308,21 @@ The configuration contains:
 lock_exact_experiment_set: true
 ```
 
-When this option is enabled, the configuration loader does not allow silent changes to the seven models or eleven tasks.
+When this option is enabled, the configuration loader rejects changes to the fixed seven-model and eleven-task experiment set.
 
-## Data and cache policy
+## Data and generated files
 
-Downloaded datasets, pretrained model weights, and large embedding caches are not stored in the repository.
+Downloaded datasets, pretrained model weights, caches, and generated outputs are not tracked by Git.
 
-The following paths are used for local data and generated outputs:
+The main local paths are:
 
 ```text
-cache/models/
-cache/data/
+cache/
 outputs/full_experiment/
 artifacts/generated/
 ```
 
-These paths should be excluded through `.gitignore`.
-
-Reference files used by the analysis code are stored under:
+Reference data and manuscript assets are stored under:
 
 ```text
 reference/
@@ -374,7 +353,7 @@ Citation information is provided in:
 
 [`CITATION.cff`](CITATION.cff)
 
-Please use this file when citing the repository or the paper.
+Please cite the Harmora paper when using this code or its artifacts.
 
 ## License
 
