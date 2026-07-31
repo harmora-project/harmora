@@ -19,7 +19,6 @@ The repository includes:
 - bandwidth and spectral-depth analyses;
 - adaptive-precision experiments;
 - runtime and eigensolver analyses;
-- reference figures, tables, and result CSV files;
 
 ## Repository structure
 
