@@ -1,0 +1,25 @@
+\begin{table*}[t]
+\centering
+\caption{Real-cache post-embedding runtime by task. Exhaustive time evaluates all 106 candidates; hybrid time screens all candidates with Harmora and evaluates the top five.}
+\label{tab:runtime_real_tasks}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.07}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}llrrrrrc@{}}
+\toprule
+\textbf{Task} & \textbf{Family} & \textbf{Exhaustive (s)} & \textbf{Screen (s)} & \textbf{Top-5 (s)} & \textbf{Hybrid (s)} & \textbf{Speedup} & \textbf{Break-even} \\
+\midrule
+ArXiv-P2P & Clustering & 310.37 & 5.00 & 16.70 & 21.70 & $14.30\times$ & Yes \\
+ArXiv-S2S & Clustering & 310.71 & 5.12 & 15.65 & 20.77 & $14.96\times$ & Yes \\
+Banking77 & Classification & 39.52 & 4.99 & 1.76 & 6.75 & $5.85\times$ & Yes \\
+Biorxiv & Clustering & 74.43 & 5.01 & 4.00 & 9.02 & $8.25\times$ & Yes \\
+Emotion & Classification & 21.44 & 5.06 & 0.95 & 6.01 & $3.57\times$ & Yes \\
+HUMEEmotion & Classification & 3.21 & 0.12 & 0.13 & 0.25 & $12.77\times$ & Yes \\
+LegalBenchPC & Pair classification & 0.60 & 20.66 & 0.03 & 20.69 & $0.03\times$ & No \\
+SICK-R & STS & 0.52 & 20.66 & 0.03 & 20.69 & $0.03\times$ & No \\
+STS15 & STS & 0.53 & 20.68 & 0.03 & 20.71 & $0.03\times$ & No \\
+STS16 & STS & 0.50 & 20.31 & 0.03 & 20.34 & $0.02\times$ & No \\
+STS-B & STS & 0.48 & 20.04 & 0.03 & 20.06 & $0.02\times$ & No \\
+\bottomrule
+\end{tabular*}
+\end{table*}

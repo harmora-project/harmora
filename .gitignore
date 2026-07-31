@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Downloaded models and datasets
+cache/
+
+# Full experiment outputs
+outputs/
+
+# Generated artifacts (exact reference assets remain tracked under reference/)
+artifacts/*
+!artifacts/.gitkeep
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+# Packaging
+build/
+dist/
+*.egg-info/
+

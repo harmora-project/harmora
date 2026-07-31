@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "harmora"
+version = "1.0.0"
+description = "Reproducibility package for Harmora: label-free model-layer selection via Laplacian harmonics"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Harmora Authors"}]
+dependencies = [
+  "torch>=2.2",
+  "transformers>=4.40,<6",
+  "sentence-transformers>=3.0",
+  "mteb>=2.0,<3",
+  "huggingface-hub>=0.23",
+  "accelerate>=0.30",
+  "numpy>=1.24",
+  "scipy>=1.10",
+  "pandas>=2.0",
+  "PyYAML>=6.0",
+  "tqdm>=4.66",
+  "matplotlib>=3.8",
+  "scikit-learn>=1.4",
+  "representation-itl",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

@@ -1,0 +1,107 @@
+\begin{table*}[htbp]
+\centering
+\caption{Overall within-model results across the eleven tasks.}
+\label{tab:within_model_overall_results}
+\scriptsize
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.15}
+\providecommand{\mv}[2]{$#1 \,\pm\, {\scriptstyle #2}$}
+
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Metric}
+& \textbf{Pearson}
+& \textbf{Spearman}
+& \textbf{Kendall}
+& \textbf{Dist.}
+& \textbf{Positive tasks}
+& \textbf{Spearman rank} \\
+\midrule
+Matrix Entropy $\uparrow$
+& \mv{0.357}{0.000}
+& \mv{0.226}{0.000}
+& \mv{0.175}{0.000}
+& \mv{0.639}{0.000}
+& 11/11
+& 4 \\
+
+Participation Ratio $\uparrow$
+& \mv{0.392}{0.000}
+& \mv{0.224}{0.000}
+& \mv{0.153}{0.000}
+& \mv{0.658}{0.000}
+& 10/11
+& 5 \\
+
+Anisotropy $\downarrow$
+& \mv{0.358}{0.000}
+& \mv{0.228}{0.000}
+& \mv{0.179}{0.000}
+& \mv{0.642}{0.000}
+& 11/11
+& 3 \\
+
+Curvature $\downarrow$
+& \mv{0.094}{0.000}
+& \mv{0.028}{0.000}
+& \mv{0.025}{0.000}
+& \mv{0.604}{0.000}
+& 5/11
+& 9 \\
+
+Spectral Gap $\uparrow$
+& \mv{0.379}{0.000}
+& \mv{0.271}{0.000}
+& \mv{0.188}{0.000}
+& \mv{0.630}{0.000}
+& 10/11
+& 2 \\
+
+InfoNCE Loss $\downarrow$
+& \mv{0.340}{0.000}
+& \mv{0.219}{0.000}
+& \mv{0.169}{0.000}
+& \mv{0.640}{0.000}
+& 11/11
+& 6 \\
+
+DiME $\uparrow$
+& \mv{0.098}{0.000}
+& \mv{0.112}{0.000}
+& \mv{0.092}{0.000}
+& \mv{0.629}{0.000}
+& 9/11
+& 8 \\
+
+LiDAR $\uparrow$
+& \mv{0.163}{0.000}
+& \mv{0.131}{0.001}
+& \mv{0.101}{0.000}
+& \mv{0.577}{0.000}
+& 8/11
+& 7 \\
+
+\midrule
+
+\oursrow Harmora (ours) $\uparrow$
+& \mv{0.491}{0.001}
+& \mv{0.432}{0.001}
+& \mv{0.341}{0.001}
+& \mv{0.636}{0.000}
+& 11/11
+& 1 \\
+\bottomrule
+\end{tabular}
+}
+
+\vspace{1mm}
+\begin{minipage}{0.99\textwidth}
+\scriptsize
+\textit{Note:}
+Correlation columns report the mean $\pm$ seed variance.
+For each seed, models are averaged within each task and the eleven tasks
+are then averaged with equal weight. Positive tasks and rank are based
+on Spearman correlation.
+\end{minipage}
+\end{table*}

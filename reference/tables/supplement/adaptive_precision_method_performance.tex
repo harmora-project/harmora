@@ -1,0 +1,31 @@
+\begin{table*}[t]
+\centering
+\small
+\caption{Finite-sample layer-shortlisting performance. Values are task-macro means with task-bootstrap 95\% confidence intervals. Lower coverage regret is better; all other metrics are higher-is-better.}
+\label{tab:finite_sample_precision_performance}
+\begin{tabular}{clcccc}
+\toprule
+Fraction & Method & Utility $\rho$ & NDCG@5 & Coverage regret@5 & Rank reliability \\
+\midrule
+0.25 & Adaptive precision & 0.491 [0.393, 0.583] & 0.830 [0.776, 0.873] & 0.027 [0.010, 0.049] & 0.989 [0.984, 0.993] \\
+ & Fixed precision & 0.480 [0.379, 0.573] & 0.820 [0.768, 0.865] & 0.029 [0.010, 0.053] & 0.990 [0.987, 0.993] \\
+ & No precision & 0.486 [0.386, 0.578] & 0.827 [0.774, 0.871] & 0.026 [0.010, 0.048] & 0.990 [0.986, 0.993] \\
+ & Shuffled precision & 0.480 [0.383, 0.572] & 0.821 [0.771, 0.864] & 0.026 [0.010, 0.047] & 0.990 [0.987, 0.993] \\
+\midrule
+0.50 & Adaptive precision & 0.480 [0.384, 0.572] & 0.814 [0.762, 0.859] & 0.031 [0.013, 0.055] & 0.995 [0.993, 0.996] \\
+ & Fixed precision & 0.471 [0.377, 0.565] & 0.805 [0.755, 0.852] & 0.031 [0.012, 0.054] & 0.995 [0.994, 0.996] \\
+ & No precision & 0.475 [0.375, 0.569] & 0.813 [0.760, 0.860] & 0.030 [0.012, 0.054] & 0.995 [0.994, 0.996] \\
+ & Shuffled precision & 0.469 [0.373, 0.561] & 0.806 [0.758, 0.851] & 0.030 [0.012, 0.052] & 0.995 [0.994, 0.996] \\
+\midrule
+0.75 & Adaptive precision & 0.460 [0.361, 0.557] & 0.797 [0.748, 0.845] & 0.034 [0.015, 0.057] & 0.997 [0.997, 0.998] \\
+ & Fixed precision & 0.463 [0.369, 0.558] & 0.798 [0.749, 0.848] & 0.031 [0.013, 0.054] & 0.997 [0.995, 0.998] \\
+ & No precision & 0.470 [0.375, 0.563] & 0.806 [0.757, 0.852] & 0.031 [0.013, 0.055] & 0.997 [0.995, 0.998] \\
+ & Shuffled precision & 0.464 [0.371, 0.555] & 0.801 [0.754, 0.848] & 0.031 [0.013, 0.054] & 0.997 [0.996, 0.998] \\
+\midrule
+1.00 & Adaptive precision & 0.461 [0.366, 0.553] & 0.798 [0.750, 0.845] & 0.031 [0.013, 0.054] & 1.000 [1.000, 1.000] \\
+ & Fixed precision & 0.461 [0.366, 0.555] & 0.798 [0.748, 0.846] & 0.031 [0.012, 0.055] & 1.000 [1.000, 1.000] \\
+ & No precision & 0.469 [0.372, 0.560] & 0.804 [0.755, 0.851] & 0.031 [0.013, 0.054] & 1.000 [1.000, 1.000] \\
+ & Shuffled precision & 0.461 [0.364, 0.554] & 0.798 [0.749, 0.846] & 0.031 [0.013, 0.054] & 1.000 [1.000, 1.000] \\
+\bottomrule
+\end{tabular}
+\end{table*}

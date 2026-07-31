@@ -1,0 +1,30 @@
+\begin{table*}[t]
+\centering
+\small
+\caption{Paired task-level comparison of adaptive precision against controls. Positive $\Delta$ favors adaptive precision. Confidence intervals use task bootstrap; $p_{\mathrm{Holm}}$ is the exact sign-flip test corrected across the three controls within each fraction and endpoint.}
+\label{tab:finite_sample_precision_paired}
+\begin{tabular}{cclccc}
+\toprule
+Fraction & Endpoint & Baseline & $\Delta$ [95\% CI] & W/L/T & $p_{\mathrm{Holm}}$ \\
+\midrule
+0.25 & NDCG@5 & Fixed precision & +0.0103 [+0.0049, +0.0178] & 11/0/0 & 0.0029 \\
+0.25 & NDCG@5 & No precision & +0.0033 [+0.0003, +0.0077] & 9/2/0 & 0.0674 \\
+0.25 & NDCG@5 & Shuffled precision & +0.0093 [+0.0039, +0.0160] & 9/2/0 & 0.0156 \\
+0.25 & Utility Spearman & Fixed precision & +0.0115 [+0.0018, +0.0217] & 8/3/0 & 0.1289 \\
+0.25 & Utility Spearman & No precision & +0.0054 [-0.0027, +0.0141] & 7/4/0 & 0.2627 \\
+0.25 & Utility Spearman & Shuffled precision & +0.0114 [+0.0039, +0.0186] & 9/2/0 & 0.0645 \\
+0.50 & NDCG@5 & Fixed precision & +0.0092 [+0.0019, +0.0197] & 8/3/0 & 0.0732 \\
+0.50 & NDCG@5 & No precision & +0.0011 [-0.0065, +0.0084] & 5/6/0 & 0.8008 \\
+0.50 & NDCG@5 & Shuffled precision & +0.0078 [+0.0009, +0.0163] & 8/3/0 & 0.1270 \\
+0.50 & Utility Spearman & Fixed precision & +0.0089 [-0.0016, +0.0209] & 6/5/0 & 0.3848 \\
+0.50 & Utility Spearman & No precision & +0.0049 [-0.0044, +0.0156] & 5/6/0 & 0.4170 \\
+0.50 & Utility Spearman & Shuffled precision & +0.0110 [+0.0027, +0.0200] & 7/4/0 & 0.1113 \\
+0.75 & NDCG@5 & Fixed precision & -0.0015 [-0.0096, +0.0051] & 8/3/0 & 0.7500 \\
+0.75 & NDCG@5 & No precision & -0.0092 [-0.0197, -0.0001] & 6/5/0 & 0.3398 \\
+0.75 & NDCG@5 & Shuffled precision & -0.0048 [-0.0137, +0.0027] & 5/6/0 & 0.7500 \\
+0.75 & Utility Spearman & Fixed precision & -0.0036 [-0.0242, +0.0125] & 7/4/0 & 1.0000 \\
+0.75 & Utility Spearman & No precision & -0.0101 [-0.0306, +0.0074] & 4/7/0 & 1.0000 \\
+0.75 & Utility Spearman & Shuffled precision & -0.0036 [-0.0212, +0.0114] & 6/5/0 & 1.0000 \\
+\bottomrule
+\end{tabular}
+\end{table*}

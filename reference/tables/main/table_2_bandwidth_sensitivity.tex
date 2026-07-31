@@ -1,0 +1,18 @@
+\begin{table*}[t]
+\centering
+\caption{Support-matched bandwidth sensitivity across the four task families. Values at the fixed setting report the mean and sample variance across downstream seeds. Family-specific best bandwidths are descriptive diagnostics only.}
+\label{tab:bandwidth_sensitivity_main}
+\footnotesize
+\setlength{\tabcolsep}{4.2pt}
+\renewcommand{\arraystretch}{1.10}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lccccccc@{}}
+\toprule
+\textbf{Family} & \textbf{Tasks} & \textbf{Fixed $K$} & \textbf{Alignment} & \textbf{Seed var.} & \textbf{Best $K$} & \textbf{Best alignment} & \textbf{Gap} \\
+\midrule
+Classification & 3 & 10 & 0.315 & 0.0162 & 47 & 0.327 & 0.011 \\
+Clustering & 3 & 10 & 0.463 & 8.98e-05 & 35 & 0.491 & 0.028 \\
+Pair classification & 1 & 10 & 0.492 & 0 & 44 & 0.518 & 0.026 \\
+Semantic textual similarity & 4 & 10 & 0.483 & 0 & 47 & 0.550 & 0.067 \\
+\bottomrule
+\end{tabular*}
+\end{table*}

@@ -1,0 +1,212 @@
+\begin{table*}[htbp]
+\centering
+\caption{Within-model results by task family.}
+\label{tab:within_model_family_results}
+\scriptsize
+\setlength{\tabcolsep}{2.25pt}
+\renewcommand{\arraystretch}{1.15}
+\providecommand{\mv}[2]{$#1 \,\pm\, {\scriptstyle #2}$}
+
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lcccccccccccccccc}
+\toprule
+\multirow{3}{*}{\textbf{Metric}}
+& \multicolumn{4}{c}{\textbf{Classification}}
+& \multicolumn{4}{c}{\textbf{Clustering}}
+& \multicolumn{4}{c}{\textbf{Pair classification}}
+& \multicolumn{4}{c}{\textbf{Semantic textual similarity}} \\
+\cmidrule(lr){2-5}
+\cmidrule(lr){6-9}
+\cmidrule(lr){10-13}
+\cmidrule(lr){14-17}
+
+& \multicolumn{4}{c}{\scriptsize Banking77, Emotion, HUMEEmotion}
+& \multicolumn{4}{c}{\scriptsize ArXivP2P, ArXivS2S, Biorxiv}
+& \multicolumn{4}{c}{\scriptsize LegalBenchPC}
+& \multicolumn{4}{c}{\scriptsize STS15, STS16, STS-B, SICK-R} \\
+\cmidrule(lr){2-5}
+\cmidrule(lr){6-9}
+\cmidrule(lr){10-13}
+\cmidrule(lr){14-17}
+
+& \textbf{Pearson} & \textbf{Spearman} & \textbf{Kendall} & \textbf{Dist.}
+& \textbf{Pearson} & \textbf{Spearman} & \textbf{Kendall} & \textbf{Dist.}
+& \textbf{Pearson} & \textbf{Spearman} & \textbf{Kendall} & \textbf{Dist.}
+& \textbf{Pearson} & \textbf{Spearman} & \textbf{Kendall} & \textbf{Dist.} \\
+\midrule
+Matrix Entropy $\uparrow$
+& \mv{0.358}{0.000}
+& \mv{0.294}{0.001}
+& \mv{0.228}{0.001}
+& \mv{0.600}{0.000}
+& \mv{0.191}{0.000}
+& \mv{0.117}{0.000}
+& \mv{0.082}{0.000}
+& \mv{0.656}{0.000}
+& \mv{0.232}{0.000}
+& \mv{0.140}{0.000}
+& \mv{0.113}{0.000}
+& \mv{0.600}{0.000}
+& \mv{0.511}{0.000}
+& \mv{0.279}{0.000}
+& \mv{0.220}{0.000}
+& \mv{0.664}{0.000} \\
+
+Participation Ratio $\uparrow$
+& \mv{0.344}{0.000}
+& \mv{0.274}{0.000}
+& \mv{0.213}{0.000}
+& \mv{0.610}{0.000}
+& \mv{0.294}{0.000}
+& \mv{0.110}{0.000}
+& \mv{0.059}{0.000}
+& \mv{0.690}{0.000}
+& \mv{0.525}{0.000}
+& \mv{0.478}{0.000}
+& \mv{0.341}{0.000}
+& \mv{0.643}{0.000}
+& \mv{0.469}{0.000}
+& \mv{0.207}{0.000}
+& \mv{0.131}{0.000}
+& \mv{0.673}{0.000} \\
+
+Anisotropy $\downarrow$
+& \mv{0.371}{0.000}
+& \mv{0.302}{0.001}
+& \mv{0.238}{0.000}
+& \mv{0.602}{0.000}
+& \mv{0.203}{0.000}
+& \mv{0.138}{0.000}
+& \mv{0.100}{0.000}
+& \mv{0.652}{0.000}
+& \mv{0.189}{0.000}
+& \mv{0.099}{0.000}
+& \mv{0.084}{0.000}
+& \mv{0.601}{0.000}
+& \mv{0.506}{0.000}
+& \mv{0.272}{0.000}
+& \mv{0.217}{0.000}
+& \mv{0.676}{0.000} \\
+
+Curvature $\downarrow$
+& \mv{0.164}{0.004}
+& \mv{0.123}{0.006}
+& \mv{0.116}{0.004}
+& \mv{0.613}{0.000}
+& \mv{-0.101}{0.000}
+& \mv{-0.080}{0.000}
+& \mv{-0.062}{0.000}
+& \mv{0.537}{0.000}
+& \mv{-0.316}{0.000}
+& \mv{-0.240}{0.000}
+& \mv{-0.145}{0.000}
+& \mv{0.538}{0.000}
+& \mv{0.289}{0.000}
+& \mv{0.104}{0.000}
+& \mv{0.066}{0.000}
+& \mv{0.662}{0.000} \\
+
+Spectral Gap $\uparrow$
+& \mv{0.337}{0.003}
+& \mv{0.324}{0.003}
+& \mv{0.251}{0.003}
+& \mv{0.592}{0.000}
+& \mv{0.295}{0.000}
+& \mv{0.186}{0.000}
+& \mv{0.122}{0.000}
+& \mv{0.658}{0.000}
+& \mv{0.517}{0.000}
+& \mv{0.480}{0.000}
+& \mv{0.332}{0.000}
+& \mv{0.622}{0.000}
+& \mv{0.440}{0.000}
+& \mv{0.242}{0.000}
+& \mv{0.153}{0.000}
+& \mv{0.639}{0.000} \\
+
+InfoNCE Loss $\downarrow$
+& \mv{0.349}{0.000}
+& \mv{0.289}{0.001}
+& \mv{0.226}{0.001}
+& \mv{0.593}{0.000}
+& \mv{0.199}{0.000}
+& \mv{0.130}{0.000}
+& \mv{0.096}{0.000}
+& \mv{0.658}{0.000}
+& \mv{0.191}{0.000}
+& \mv{0.104}{0.000}
+& \mv{0.075}{0.000}
+& \mv{0.610}{0.000}
+& \mv{0.476}{0.000}
+& \mv{0.263}{0.000}
+& \mv{0.205}{0.000}
+& \mv{0.668}{0.000} \\
+
+DiME $\uparrow$
+& \mv{0.185}{0.000}
+& \mv{0.202}{0.000}
+& \mv{0.162}{0.000}
+& \mv{0.597}{0.000}
+& \mv{0.127}{0.000}
+& \mv{0.155}{0.000}
+& \mv{0.126}{0.000}
+& \mv{0.661}{0.000}
+& \mv{0.103}{0.000}
+& \mv{-0.046}{0.000}
+& \mv{-0.031}{0.000}
+& \mv{0.597}{0.000}
+& \mv{0.010}{0.000}
+& \mv{0.052}{0.000}
+& \mv{0.044}{0.000}
+& \mv{0.637}{0.000} \\
+
+LiDAR $\uparrow$
+& \mv{0.193}{0.003}
+& \mv{0.231}{0.009}
+& \mv{0.192}{0.004}
+& \mv{0.530}{0.001}
+& \mv{-0.017}{0.000}
+& \mv{-0.004}{0.000}
+& \mv{-0.009}{0.000}
+& \mv{0.607}{0.000}
+& \mv{0.409}{0.000}
+& \mv{0.432}{0.000}
+& \mv{0.321}{0.000}
+& \mv{0.565}{0.000}
+& \mv{0.215}{0.000}
+& \mv{0.081}{0.000}
+& \mv{0.060}{0.000}
+& \mv{0.594}{0.000} \\
+
+\midrule
+
+\oursrow Harmora (ours) $\uparrow$
+& \mv{0.351}{0.012}
+& \mv{0.315}{0.016}
+& \mv{0.239}{0.010}
+& \mv{0.570}{0.001}
+& \mv{0.573}{0.000}
+& \mv{0.463}{0.000}
+& \mv{0.369}{0.000}
+& \mv{0.691}{0.000}
+& \mv{0.608}{0.000}
+& \mv{0.492}{0.000}
+& \mv{0.356}{0.000}
+& \mv{0.657}{0.000}
+& \mv{0.505}{0.000}
+& \mv{0.483}{0.000}
+& \mv{0.392}{0.000}
+& \mv{0.638}{0.000} \\
+\bottomrule
+\end{tabular}
+}
+
+\vspace{1mm}
+\begin{minipage}{0.99\textwidth}
+\scriptsize
+\textit{Note:}
+Each cell reports the mean $\pm$ seed variance.
+For each seed, models are averaged within each task and tasks are then
+averaged within each family.
+\end{minipage}
+\end{table*}

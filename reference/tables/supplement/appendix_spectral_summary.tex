@@ -1,0 +1,19 @@
+\begin{table*}[t]
+\centering
+\caption{Task-balanced harmonic-energy summaries across early, middle, and late relative depth. Mean mode gives the average energy location; mode spread is the energy-weighted standard deviation across harmonic modes.}
+\label{tab:spectral_depth_summary}
+\footnotesize
+\setlength{\tabcolsep}{3.6pt}
+\renewcommand{\arraystretch}{1.10}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lcccccccccccc@{}}
+\toprule
+\textbf{Family} & \textbf{Tasks} & \textbf{Layers} & \multicolumn{3}{c}{\textbf{Mean harmonic mode}} & \multicolumn{3}{c}{\textbf{Mode spread}} & \textbf{$K_{90}$ avail.} & \textbf{Med. $K_{90}$} & \textbf{$K_{95}$ avail.} & \textbf{Med. $K_{95}$} \\
+& & & \textbf{Early} & \textbf{Middle} & \textbf{Late} & \textbf{Early} & \textbf{Middle} & \textbf{Late} & & & & \\
+\midrule
+Classification & 3 & 318 & 16.66 & 15.11 & 16.31 & 17.53 & 16.78 & 17.05 & 100.0\% & 44.5 & 100.0\% & 59.0 \\
+Clustering & 3 & 318 & 18.13 & 15.73 & 18.74 & 20.50 & 19.12 & 20.33 & 100.0\% & 51.0 & 100.0\% & 64.0 \\
+Pair classification & 1 & 106 & 14.91 & 13.10 & 15.23 & 18.90 & 17.69 & 18.55 & 100.0\% & 46.0 & 100.0\% & 60.0 \\
+Semantic textual similarity & 4 & 424 & 18.32 & 15.03 & 16.98 & 20.56 & 18.96 & 19.72 & 100.0\% & 51.0 & 100.0\% & 64.0 \\
+\bottomrule
+\end{tabular*}
+\end{table*}

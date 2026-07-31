@@ -1,0 +1,816 @@
+\scriptsize
+\setlength{\tabcolsep}{2.8pt}
+\renewcommand{\arraystretch}{1.10}
+\providecommand{\mv}[2]{$#1\!\pm\!{\scriptscriptstyle #2}$}
+\begin{longtable}{llcccccc}
+\caption{Task-level cross-model representation-selection results.}
+\label{tab:cross_model_selection_task_level}\\
+\toprule
+\textbf{Task} & \textbf{Metric} & \textbf{NDCG@1} & \textbf{NDCG@3}
+& \textbf{Selected pct.} & \textbf{Top-1} & \textbf{Top-3} & \textbf{Top-5} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Task} & \textbf{Metric} & \textbf{NDCG@1} & \textbf{NDCG@3}
+& \textbf{Selected pct.} & \textbf{Top-1} & \textbf{Top-3} & \textbf{Top-5} \\
+\midrule
+\endhead
+Banking77Classification.v2
+& Matrix Entropy $\uparrow$
+& \mv{0.894}{0.005}
+& \mv{0.856}{0.002}
+& \mv{0.940}{7.6\mathrm{e}{-4}}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.100}{0.013} \\
+Banking77Classification.v2
+& Participation Ratio $\uparrow$
+& \mv{0.704}{7.2\mathrm{e}{-4}}
+& \mv{0.708}{0.002}
+& \mv{0.720}{0.003}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+Banking77Classification.v2
+& Anisotropy $\downarrow$
+& \mv{0.894}{0.005}
+& \mv{0.868}{0.002}
+& \mv{0.940}{7.6\mathrm{e}{-4}}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.100}{0.013} \\
+Banking77Classification.v2
+& Curvature $\downarrow$
+& \mv{0.993}{1.8\mathrm{e}{-4}}
+& \mv{0.981}{7.7\mathrm{e}{-5}}
+& \mv{0.996}{2.1\mathrm{e}{-5}}
+& \mv{0.500}{0.333}
+& \mv{0.583}{0.028}
+& \mv{0.550}{0.010} \\
+Banking77Classification.v2
+& Spectral Gap $\uparrow$
+& \mv{0.704}{7.2\mathrm{e}{-4}}
+& \mv{0.704}{0.001}
+& \mv{0.720}{0.003}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+Banking77Classification.v2
+& InfoNCE Loss $\downarrow$
+& \mv{0.704}{7.2\mathrm{e}{-4}}
+& \mv{0.822}{0.001}
+& \mv{0.720}{0.003}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.100}{0.013} \\
+Banking77Classification.v2
+& DiME $\uparrow$
+& \mv{0.668}{0.004}
+& \mv{0.659}{0.004}
+& \mv{0.581}{0.040}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+Banking77Classification.v2
+& LiDAR $\uparrow$
+& \mv{0.722}{9.8\mathrm{e}{-4}}
+& \mv{0.726}{0.001}
+& \mv{0.780}{0.002}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+Banking77Classification.v2
+& \oursrow Harmora (ours) $\uparrow$
+& \mv{0.993}{1.8\mathrm{e}{-4}}
+& \mv{0.981}{1.5\mathrm{e}{-4}}
+& \mv{0.996}{2.1\mathrm{e}{-5}}
+& \mv{0.500}{0.333}
+& \mv{0.583}{0.028}
+& \mv{0.500}{0.040} \\
+EmotionClassification.v2
+& Matrix Entropy $\uparrow$
+& \mv{0.614}{0.003}
+& \mv{0.570}{8.1\mathrm{e}{-4}}
+& \mv{0.633}{0.024}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+EmotionClassification.v2
+& Participation Ratio $\uparrow$
+& \mv{0.614}{0.003}
+& \mv{0.567}{0.001}
+& \mv{0.633}{0.024}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.100}{0.040} \\
+EmotionClassification.v2
+& Anisotropy $\downarrow$
+& \mv{0.510}{0.007}
+& \mv{0.551}{4.1\mathrm{e}{-4}}
+& \mv{0.429}{0.029}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+EmotionClassification.v2
+& Curvature $\downarrow$
+& \mv{0.610}{0.010}
+& \mv{0.610}{0.005}
+& \mv{0.602}{0.032}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+EmotionClassification.v2
+& Spectral Gap $\uparrow$
+& \mv{0.510}{0.007}
+& \mv{0.633}{0.002}
+& \mv{0.429}{0.029}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.100}{0.040} \\
+EmotionClassification.v2
+& InfoNCE Loss $\downarrow$
+& \mv{0.614}{0.003}
+& \mv{0.570}{8.1\mathrm{e}{-4}}
+& \mv{0.633}{0.024}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+EmotionClassification.v2
+& DiME $\uparrow$
+& \mv{0.278}{0.011}
+& \mv{0.335}{0.009}
+& \mv{0.106}{0.013}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+EmotionClassification.v2
+& LiDAR $\uparrow$
+& \mv{0.583}{0.008}
+& \mv{0.667}{0.008}
+& \mv{0.582}{0.011}
+& \mv{0.000}{0}
+& \mv{0.083}{0.028}
+& \mv{0.050}{0.010} \\
+EmotionClassification.v2
+& \oursrow Harmora (ours) $\uparrow$
+& \mv{0.732}{0.007}
+& \mv{0.882}{0.003}
+& \mv{0.805}{0.022}
+& \mv{0.000}{0}
+& \mv{0.583}{0.028}
+& \mv{0.350}{0.010} \\
+HUMEEmotionClassification
+& Matrix Entropy $\uparrow$
+& \mv{0.540}{0.095}
+& \mv{0.549}{0.035}
+& \mv{0.482}{0.124}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.050}{0.010} \\
+HUMEEmotionClassification
+& Participation Ratio $\uparrow$
+& \mv{0.655}{0.020}
+& \mv{0.644}{0.032}
+& \mv{0.710}{0.055}
+& \mv{0.000}{0}
+& \mv{0.083}{0.028}
+& \mv{0.100}{0.013} \\
+HUMEEmotionClassification
+& Anisotropy $\downarrow$
+& \mv{0.540}{0.095}
+& \mv{0.549}{0.035}
+& \mv{0.482}{0.124}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.050}{0.010} \\
+HUMEEmotionClassification
+& Curvature $\downarrow$
+& \mv{0.420}{0.097}
+& \mv{0.488}{0.011}
+& \mv{0.411}{0.109}
+& \mv{0.000}{0}
+& \mv{0.083}{0.028}
+& \mv{0.050}{0.010} \\
+HUMEEmotionClassification
+& Spectral Gap $\uparrow$
+& \mv{0.662}{0.076}
+& \mv{0.665}{0.043}
+& \mv{0.676}{0.145}
+& \mv{0.000}{0}
+& \mv{0.083}{0.028}
+& \mv{0.100}{0.013} \\
+HUMEEmotionClassification
+& InfoNCE Loss $\downarrow$
+& \mv{0.626}{0.076}
+& \mv{0.556}{0.024}
+& \mv{0.627}{0.128}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.050}{0.010} \\
+HUMEEmotionClassification
+& DiME $\uparrow$
+& \mv{0.386}{0.045}
+& \mv{0.511}{0.015}
+& \mv{0.345}{0.078}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+HUMEEmotionClassification
+& LiDAR $\uparrow$
+& \mv{0.386}{0.045}
+& \mv{0.532}{0.040}
+& \mv{0.345}{0.078}
+& \mv{0.000}{0}
+& \mv{0.083}{0.028}
+& \mv{0.100}{0.013} \\
+HUMEEmotionClassification
+& \oursrow Harmora (ours) $\uparrow$
+& \mv{0.668}{0.051}
+& \mv{0.711}{0.024}
+& \mv{0.695}{0.055}
+& \mv{0.000}{0}
+& \mv{0.083}{0.028}
+& \mv{0.100}{0.013} \\
+ArXivHierarchicalClusteringP2P
+& Matrix Entropy $\uparrow$
+& \mv{0.748}{0.006}
+& \mv{0.829}{0.001}
+& \mv{0.876}{0.002}
+& \mv{0.000}{0}
+& \mv{0.250}{0.028}
+& \mv{0.400}{0} \\
+ArXivHierarchicalClusteringP2P
+& Participation Ratio $\uparrow$
+& \mv{0.750}{3.7\mathrm{e}{-4}}
+& \mv{0.783}{0.002}
+& \mv{0.890}{0.002}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+ArXivHierarchicalClusteringP2P
+& Anisotropy $\downarrow$
+& \mv{0.748}{0.006}
+& \mv{0.829}{0.001}
+& \mv{0.876}{0.002}
+& \mv{0.000}{0}
+& \mv{0.250}{0.028}
+& \mv{0.400}{0} \\
+ArXivHierarchicalClusteringP2P
+& Curvature $\downarrow$
+& \mv{0.297}{0.006}
+& \mv{0.317}{0.002}
+& \mv{0.105}{0.004}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+ArXivHierarchicalClusteringP2P
+& Spectral Gap $\uparrow$
+& \mv{0.750}{3.7\mathrm{e}{-4}}
+& \mv{0.783}{0.002}
+& \mv{0.890}{0.002}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+ArXivHierarchicalClusteringP2P
+& InfoNCE Loss $\downarrow$
+& \mv{0.748}{0.006}
+& \mv{0.829}{0.001}
+& \mv{0.876}{0.002}
+& \mv{0.000}{0}
+& \mv{0.250}{0.028}
+& \mv{0.400}{0} \\
+ArXivHierarchicalClusteringP2P
+& DiME $\uparrow$
+& \mv{0.207}{0.003}
+& \mv{0.408}{0.001}
+& \mv{0.052}{3.3\mathrm{e}{-4}}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+ArXivHierarchicalClusteringP2P
+& LiDAR $\uparrow$
+& \mv{0.092}{0.003}
+& \mv{0.223}{0.003}
+& \mv{0.017}{2.3\mathrm{e}{-5}}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.200}{0} \\
+ArXivHierarchicalClusteringP2P
+& \oursrow Harmora (ours) $\uparrow$
+& \mv{0.927}{8.5\mathrm{e}{-4}}
+& \mv{0.910}{3.5\mathrm{e}{-4}}
+& \mv{0.979}{1.4\mathrm{e}{-4}}
+& \mv{0.000}{0}
+& \mv{0.333}{0}
+& \mv{0.400}{0} \\
+ArXivHierarchicalClusteringS2S
+& Matrix Entropy $\uparrow$
+& \mv{0.519}{0.004}
+& \mv{0.463}{8.7\mathrm{e}{-4}}
+& \mv{0.183}{0.006}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+ArXivHierarchicalClusteringS2S
+& Participation Ratio $\uparrow$
+& \mv{0.000}{0}
+& \mv{0.357}{6.3\mathrm{e}{-4}}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+ArXivHierarchicalClusteringS2S
+& Anisotropy $\downarrow$
+& \mv{0.519}{0.004}
+& \mv{0.517}{8.3\mathrm{e}{-4}}
+& \mv{0.183}{0.006}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.100}{0.013} \\
+ArXivHierarchicalClusteringS2S
+& Curvature $\downarrow$
+& \mv{0.558}{6.4\mathrm{e}{-4}}
+& \mv{0.613}{3.6\mathrm{e}{-4}}
+& \mv{0.250}{0.001}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+ArXivHierarchicalClusteringS2S
+& Spectral Gap $\uparrow$
+& \mv{0.000}{0}
+& \mv{0.343}{0.001}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+ArXivHierarchicalClusteringS2S
+& InfoNCE Loss $\downarrow$
+& \mv{0.519}{0.004}
+& \mv{0.463}{8.7\mathrm{e}{-4}}
+& \mv{0.183}{0.006}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+ArXivHierarchicalClusteringS2S
+& DiME $\uparrow$
+& \mv{0.647}{0.003}
+& \mv{0.615}{7.6\mathrm{e}{-4}}
+& \mv{0.502}{0.024}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+ArXivHierarchicalClusteringS2S
+& LiDAR $\uparrow$
+& \mv{0.259}{0.002}
+& \mv{0.363}{0.002}
+& \mv{0.019}{6.0\mathrm{e}{-5}}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+ArXivHierarchicalClusteringS2S
+& \oursrow Harmora (ours) $\uparrow$
+& \mv{1.000}{0}
+& \mv{0.982}{5.1\mathrm{e}{-5}}
+& \mv{1.000}{0}
+& \mv{1.000}{0}
+& \mv{0.583}{0.028}
+& \mv{0.500}{0.040} \\
+BiorxivClusteringP2P.v2
+& Matrix Entropy $\uparrow$
+& \mv{0.926}{0.004}
+& \mv{0.910}{6.5\mathrm{e}{-4}}
+& \mv{0.971}{4.2\mathrm{e}{-4}}
+& \mv{0.000}{0}
+& \mv{0.333}{0.074}
+& \mv{0.450}{0.010} \\
+BiorxivClusteringP2P.v2
+& Participation Ratio $\uparrow$
+& \mv{0.773}{0.003}
+& \mv{0.813}{0.002}
+& \mv{0.879}{0.002}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.150}{0.010} \\
+BiorxivClusteringP2P.v2
+& Anisotropy $\downarrow$
+& \mv{0.924}{3.5\mathrm{e}{-4}}
+& \mv{0.910}{1.8\mathrm{e}{-4}}
+& \mv{0.971}{3.0\mathrm{e}{-4}}
+& \mv{0.000}{0}
+& \mv{0.333}{0.074}
+& \mv{0.450}{0.010} \\
+BiorxivClusteringP2P.v2
+& Curvature $\downarrow$
+& \mv{0.143}{0.002}
+& \mv{0.317}{4.7\mathrm{e}{-4}}
+& \mv{0.110}{3.9\mathrm{e}{-4}}
+& \mv{0.000}{0}
+& \mv{0.167}{0.037}
+& \mv{0.150}{0.010} \\
+BiorxivClusteringP2P.v2
+& Spectral Gap $\uparrow$
+& \mv{0.773}{0.003}
+& \mv{0.813}{0.002}
+& \mv{0.879}{0.002}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.150}{0.010} \\
+BiorxivClusteringP2P.v2
+& InfoNCE Loss $\downarrow$
+& \mv{0.924}{3.5\mathrm{e}{-4}}
+& \mv{0.910}{1.8\mathrm{e}{-4}}
+& \mv{0.971}{3.0\mathrm{e}{-4}}
+& \mv{0.000}{0}
+& \mv{0.333}{0.074}
+& \mv{0.450}{0.010} \\
+BiorxivClusteringP2P.v2
+& DiME $\uparrow$
+& \mv{0.444}{0.004}
+& \mv{0.572}{8.3\mathrm{e}{-4}}
+& \mv{0.245}{0.001}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+BiorxivClusteringP2P.v2
+& LiDAR $\uparrow$
+& \mv{0.358}{0.002}
+& \mv{0.502}{0.001}
+& \mv{0.186}{2.7\mathrm{e}{-4}}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+BiorxivClusteringP2P.v2
+& \oursrow Harmora (ours) $\uparrow$
+& \mv{0.910}{0.006}
+& \mv{0.930}{6.7\mathrm{e}{-4}}
+& \mv{0.962}{0.002}
+& \mv{0.250}{0.250}
+& \mv{0.333}{0.074}
+& \mv{0.450}{0.010} \\
+LegalBenchPC
+& Matrix Entropy $\uparrow$
+& \mv{0.854}{0}
+& \mv{0.824}{0}
+& \mv{0.886}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+LegalBenchPC
+& Participation Ratio $\uparrow$
+& \mv{0.854}{0}
+& \mv{0.799}{0}
+& \mv{0.886}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+LegalBenchPC
+& Anisotropy $\downarrow$
+& \mv{0.854}{0}
+& \mv{0.824}{0}
+& \mv{0.886}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+LegalBenchPC
+& Curvature $\downarrow$
+& \mv{0.266}{0}
+& \mv{0.300}{0}
+& \mv{0.229}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+LegalBenchPC
+& Spectral Gap $\uparrow$
+& \mv{0.854}{0}
+& \mv{0.752}{0}
+& \mv{0.886}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+LegalBenchPC
+& InfoNCE Loss $\downarrow$
+& \mv{0.666}{0}
+& \mv{0.791}{0}
+& \mv{0.724}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+LegalBenchPC
+& DiME $\uparrow$
+& \mv{0.818}{0}
+& \mv{0.841}{0}
+& \mv{0.838}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+LegalBenchPC
+& LiDAR $\uparrow$
+& \mv{0.854}{0}
+& \mv{0.799}{0}
+& \mv{0.886}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+LegalBenchPC
+& \oursrow Harmora (ours) $\uparrow$
+& \mv{0.883}{0}
+& \mv{0.537}{0}
+& \mv{0.914}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+SICK-R
+& Matrix Entropy $\uparrow$
+& \mv{0.877}{0}
+& \mv{0.829}{0}
+& \mv{0.914}{0}
+& \mv{0.000}{0}
+& \mv{0.333}{0}
+& \mv{0.600}{0} \\
+SICK-R
+& Participation Ratio $\uparrow$
+& \mv{0.877}{0}
+& \mv{0.678}{0}
+& \mv{0.914}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.200}{0} \\
+SICK-R
+& Anisotropy $\downarrow$
+& \mv{1.000}{0}
+& \mv{0.850}{0}
+& \mv{1.000}{0}
+& \mv{1.000}{0}
+& \mv{0.333}{0}
+& \mv{0.600}{0} \\
+SICK-R
+& Curvature $\downarrow$
+& \mv{0.969}{0}
+& \mv{0.958}{0}
+& \mv{0.981}{0}
+& \mv{0.000}{0}
+& \mv{0.667}{0}
+& \mv{0.600}{0} \\
+SICK-R
+& Spectral Gap $\uparrow$
+& \mv{1.000}{0}
+& \mv{0.826}{0}
+& \mv{1.000}{0}
+& \mv{1.000}{0}
+& \mv{0.333}{0}
+& \mv{0.600}{0} \\
+SICK-R
+& InfoNCE Loss $\downarrow$
+& \mv{0.877}{0}
+& \mv{0.829}{0}
+& \mv{0.914}{0}
+& \mv{0.000}{0}
+& \mv{0.333}{0}
+& \mv{0.600}{0} \\
+SICK-R
+& DiME $\uparrow$
+& \mv{0.945}{0}
+& \mv{0.793}{0}
+& \mv{0.962}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.200}{0} \\
+SICK-R
+& LiDAR $\uparrow$
+& \mv{0.496}{0}
+& \mv{0.616}{0}
+& \mv{0.457}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+SICK-R
+& \oursrow Harmora (ours) $\uparrow$
+& \mv{0.892}{0}
+& \mv{0.947}{0}
+& \mv{0.924}{0}
+& \mv{0.000}{0}
+& \mv{0.667}{0}
+& \mv{0.600}{0} \\
+STS15
+& Matrix Entropy $\uparrow$
+& \mv{0.937}{0}
+& \mv{0.913}{0}
+& \mv{0.943}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.200}{0} \\
+STS15
+& Participation Ratio $\uparrow$
+& \mv{0.937}{0}
+& \mv{0.841}{0}
+& \mv{0.943}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.200}{0} \\
+STS15
+& Anisotropy $\downarrow$
+& \mv{0.937}{0}
+& \mv{0.913}{0}
+& \mv{0.943}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.200}{0} \\
+STS15
+& Curvature $\downarrow$
+& \mv{0.577}{0}
+& \mv{0.753}{0}
+& \mv{0.343}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+STS15
+& Spectral Gap $\uparrow$
+& \mv{0.640}{0}
+& \mv{0.734}{0}
+& \mv{0.390}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.200}{0} \\
+STS15
+& InfoNCE Loss $\downarrow$
+& \mv{0.794}{0}
+& \mv{0.879}{0}
+& \mv{0.857}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.200}{0} \\
+STS15
+& DiME $\uparrow$
+& \mv{0.925}{0}
+& \mv{0.827}{0}
+& \mv{0.914}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+STS15
+& LiDAR $\uparrow$
+& \mv{0.704}{0}
+& \mv{0.782}{0}
+& \mv{0.467}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+STS15
+& \oursrow Harmora (ours) $\uparrow$
+& \mv{0.947}{0}
+& \mv{0.631}{0}
+& \mv{0.952}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.400}{0} \\
+STS16
+& Matrix Entropy $\uparrow$
+& \mv{0.854}{0}
+& \mv{0.826}{0}
+& \mv{0.914}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+STS16
+& Participation Ratio $\uparrow$
+& \mv{0.854}{0}
+& \mv{0.826}{0}
+& \mv{0.914}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.200}{0} \\
+STS16
+& Anisotropy $\downarrow$
+& \mv{0.863}{0}
+& \mv{0.828}{0}
+& \mv{0.933}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+STS16
+& Curvature $\downarrow$
+& \mv{0.296}{0}
+& \mv{0.291}{0}
+& \mv{0.048}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+STS16
+& Spectral Gap $\uparrow$
+& \mv{0.854}{0}
+& \mv{0.902}{0}
+& \mv{0.914}{0}
+& \mv{0.000}{0}
+& \mv{0.333}{0}
+& \mv{0.600}{0} \\
+STS16
+& InfoNCE Loss $\downarrow$
+& \mv{0.683}{0}
+& \mv{0.785}{0}
+& \mv{0.705}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+STS16
+& DiME $\uparrow$
+& \mv{0.701}{0}
+& \mv{0.709}{0}
+& \mv{0.752}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+STS16
+& LiDAR $\uparrow$
+& \mv{0.529}{0}
+& \mv{0.637}{0}
+& \mv{0.267}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+STS16
+& \oursrow Harmora (ours) $\uparrow$
+& \mv{0.371}{0}
+& \mv{0.533}{0}
+& \mv{0.114}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.400}{0} \\
+STSBenchmark
+& Matrix Entropy $\uparrow$
+& \mv{0.945}{0}
+& \mv{0.897}{0}
+& \mv{0.943}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.200}{0} \\
+STSBenchmark
+& Participation Ratio $\uparrow$
+& \mv{0.945}{0}
+& \mv{0.897}{0}
+& \mv{0.943}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.200}{0} \\
+STSBenchmark
+& Anisotropy $\downarrow$
+& \mv{0.945}{0}
+& \mv{0.897}{0}
+& \mv{0.952}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+STSBenchmark
+& Curvature $\downarrow$
+& \mv{0.894}{0}
+& \mv{0.879}{0}
+& \mv{0.905}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.200}{0} \\
+STSBenchmark
+& Spectral Gap $\uparrow$
+& \mv{0.945}{0}
+& \mv{0.960}{0}
+& \mv{0.952}{0}
+& \mv{0.000}{0}
+& \mv{0.333}{0}
+& \mv{0.600}{0} \\
+STSBenchmark
+& InfoNCE Loss $\downarrow$
+& \mv{0.945}{0}
+& \mv{0.897}{0}
+& \mv{0.943}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.200}{0} \\
+STSBenchmark
+& DiME $\uparrow$
+& \mv{0.724}{0}
+& \mv{0.764}{0}
+& \mv{0.800}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+STSBenchmark
+& LiDAR $\uparrow$
+& \mv{0.945}{0}
+& \mv{0.765}{0}
+& \mv{0.943}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0} \\
+STSBenchmark
+& \oursrow Harmora (ours) $\uparrow$
+& \mv{0.952}{0}
+& \mv{0.705}{0}
+& \mv{0.962}{0}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.400}{0} \\
+\bottomrule
+\end{longtable}
+
+\noindent\scriptsize
+\textit{Note:}
+Each entry reports the mean across four downstream seeds, with seed variance
+shown in smaller type.

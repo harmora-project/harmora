@@ -1,0 +1,106 @@
+\begin{table*}[t]
+\centering
+\caption{Cross-model representation-selection performance across the eleven tasks.}
+\label{tab:cross_model_selection_main}
+\small
+\setlength{\tabcolsep}{4.4pt}
+\renewcommand{\arraystretch}{1.15}
+\providecommand{\mv}[2]{$#1\!\pm\!{\scriptscriptstyle #2}$}
+
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lcccccc@{}}
+\toprule
+\textbf{Metric}
+& \textbf{NDCG@1}
+& \textbf{NDCG@3}
+& \textbf{Selected pct.}
+& \textbf{Top-1 overlap}
+& \textbf{Top-3 overlap}
+& \textbf{Top-5 overlap} \\
+\midrule
+Matrix Entropy $\uparrow$
+& \mv{0.792}{9.0\mathrm{e}{-4}}
+& \mv{0.770}{3.8\mathrm{e}{-4}}
+& \mv{0.790}{0.002}
+& \mv{0.000}{0}
+& \mv{0.083}{8.4\mathrm{e}{-4}}
+& \mv{0.182}{2.2\mathrm{e}{-4}} \\
+
+Participation Ratio $\uparrow$
+& \mv{0.724}{7.4\mathrm{e}{-5}}
+& \mv{0.720}{2.4\mathrm{e}{-4}}
+& \mv{0.767}{7.3\mathrm{e}{-4}}
+& \mv{0.000}{0}
+& \mv{0.008}{2.3\mathrm{e}{-4}}
+& \mv{0.105}{3.0\mathrm{e}{-4}} \\
+
+Anisotropy $\downarrow$
+& \mv{0.794}{6.4\mathrm{e}{-4}}
+& \mv{0.776}{3.4\mathrm{e}{-4}}
+& \mv{0.781}{0.001}
+& \mv{0.091}{0}
+& \mv{0.083}{8.4\mathrm{e}{-4}}
+& \mv{0.173}{5.5\mathrm{e}{-4}} \\
+
+Curvature $\downarrow$
+& \mv{0.547}{5.3\mathrm{e}{-4}}
+& \mv{0.591}{2.2\mathrm{e}{-4}}
+& \mv{0.453}{7.9\mathrm{e}{-4}}
+& \mv{0.045}{0.003}
+& \mv{0.136}{3.1\mathrm{e}{-4}}
+& \mv{0.141}{5.2\mathrm{e}{-4}} \\
+
+Spectral Gap $\uparrow$
+& \mv{0.699}{5.4\mathrm{e}{-4}}
+& \mv{0.738}{2.5\mathrm{e}{-4}}
+& \mv{0.703}{0.002}
+& \mv{0.091}{0}
+& \mv{0.098}{2.3\mathrm{e}{-4}}
+& \mv{0.214}{3.0\mathrm{e}{-4}} \\
+
+InfoNCE Loss $\downarrow$
+& \mv{0.736}{3.5\mathrm{e}{-4}}
+& \mv{0.757}{2.4\mathrm{e}{-4}}
+& \mv{0.741}{0.002}
+& \mv{0.000}{0}
+& \mv{0.083}{8.4\mathrm{e}{-4}}
+& \mv{0.182}{2.2\mathrm{e}{-4}} \\
+
+DiME $\uparrow$
+& \mv{0.613}{8.1\mathrm{e}{-4}}
+& \mv{0.640}{5.9\mathrm{e}{-4}}
+& \mv{0.554}{4.3\mathrm{e}{-4}}
+& \mv{0.000}{0}
+& \mv{0.000}{0}
+& \mv{0.018}{0} \\
+
+LiDAR $\uparrow$
+& \mv{0.539}{0.001}
+& \mv{0.601}{0.001}
+& \mv{0.450}{0.001}
+& \mv{0.000}{0}
+& \mv{0.015}{9.2\mathrm{e}{-4}}
+& \mv{0.032}{3.0\mathrm{e}{-4}} \\
+
+\midrule
+
+\oursrow Harmora (ours) $\uparrow$
+& \mv{\mathbf{0.843}}{2.7\mathrm{e}{-4}}
+& \mv{\mathbf{0.795}}{1.3\mathrm{e}{-4}}
+& \mv{\mathbf{0.846}}{7.4\mathrm{e}{-4}}
+& \mv{\mathbf{0.159}}{0.008}
+& \mv{\mathbf{0.288}}{3.1\mathrm{e}{-4}}
+& \mv{\mathbf{0.373}}{5.5\mathrm{e}{-4}} \\
+\bottomrule
+\end{tabular*}
+
+\vspace{1mm}
+\begin{minipage}{0.99\textwidth}
+\scriptsize
+\textit{Note:}
+Each entry reports the task-balanced mean across the four downstream
+seeds, with the corresponding seed variance shown in smaller type.
+For each seed, the eleven tasks are averaged with equal weight.
+Higher is better for all reported measures. The best mean in each
+column is shown in bold.
+\end{minipage}
+\end{table*}

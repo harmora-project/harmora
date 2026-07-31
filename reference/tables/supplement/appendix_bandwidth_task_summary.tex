@@ -1,0 +1,25 @@
+\begin{table*}[t]
+\centering
+\caption{Task-level support-matched bandwidth results. Values at $K=10$ report the mean and sample variance across downstream seeds; the best displayed bandwidth is diagnostic only.}
+\label{tab:bandwidth_task_summary}
+\footnotesize
+\setlength{\tabcolsep}{4.0pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}llccccc@{}}
+\toprule
+\textbf{Family} & \textbf{Task} & \textbf{$K=10$} & \textbf{Seed var.} & \textbf{Best $K$} & \textbf{Best alignment} & \textbf{Gap} \\
+\midrule
+Classification & Banking77 & 0.347 & 0.0117 & 40 & 0.359 & 0.013 \\
+Classification & Emotion & 0.445 & 0.0302 & 47 & 0.484 & 0.039 \\
+Classification & HUMEEmotion & 0.154 & 0.0558 & 8 & 0.156 & 0.002 \\
+Clustering & ArXiv-P2P & 0.468 & 0.00184 & 29 & 0.514 & 0.046 \\
+Clustering & ArXiv-S2S & 0.644 & 0.00179 & 2 & 0.672 & 0.028 \\
+Clustering & Biorxiv & 0.276 & 0.000428 & 46 & 0.311 & 0.035 \\
+Pair classification & LegalBenchPC & 0.492 & 0 & 44 & 0.518 & 0.026 \\
+Semantic textual similarity & SICK-R & 0.693 & 0 & 46 & 0.710 & 0.017 \\
+Semantic textual similarity & STS15 & 0.242 & 0 & 47 & 0.336 & 0.094 \\
+Semantic textual similarity & STS16 & 0.532 & 0 & 47 & 0.626 & 0.093 \\
+Semantic textual similarity & STS-B & 0.463 & 0 & 36 & 0.530 & 0.067 \\
+\bottomrule
+\end{tabular*}
+\end{table*}

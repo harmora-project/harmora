@@ -1,0 +1,15 @@
+torch>=2.2
+transformers>=4.40,<6
+sentence-transformers>=3.0
+mteb>=2.0,<3
+huggingface-hub>=0.23
+accelerate>=0.30
+numpy>=1.24
+scipy>=1.10
+pandas>=2.0
+PyYAML>=6.0
+tqdm>=4.66
+matplotlib>=3.8
+scikit-learn>=1.4
+representation-itl
+pytest>=8.0

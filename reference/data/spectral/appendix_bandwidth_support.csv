@@ -1,0 +1,12 @@
+quantity,value
+Primary bandwidth,10.0
+Maximum displayed bandwidth,80.0
+Displayed bandwidth values,80.0
+Eligible cases at primary K,77.0
+Retained support-matched cases,70.0
+Eligible tasks at primary K,11.0
+Retained support-matched tasks,10.0
+Case retention,0.9090909090909091
+Task retention,0.9090909090909091
+Minimum common layers per retained case,7.0
+Maximum common layers per retained case,25.0

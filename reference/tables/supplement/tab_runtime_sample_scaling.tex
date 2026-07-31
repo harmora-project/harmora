@@ -1,0 +1,21 @@
+\begin{table*}[t]
+\centering
+\caption{Controlled per-candidate runtime scaling. Entries are median [Q1, Q3] in milliseconds over five single-threaded measurements after one warm-up.}
+\label{tab:runtime_sample_scaling}
+\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{rrrr}
+\toprule
+$N$ & \textbf{Harmora} & \textbf{Classification} & \textbf{Clustering} \\
+\midrule
+100 & 2.09 [2.08, 2.17] & 4.55 [4.55, 4.69] & 10.48 [10.35, 10.81] \\
+200 & 6.68 [6.63, 6.70] & 5.90 [5.42, 5.94] & 26.72 [26.41, 26.92] \\
+300 & 13.68 [13.67, 13.76] & 7.55 [7.03, 7.77] & 28.18 [27.62, 28.41] \\
+450 & 32.29 [32.11, 32.42] & 9.77 [9.65, 10.14] & 39.20 [38.98, 39.37] \\
+600 & 58.28 [57.59, 60.18] & 11.79 [11.75, 12.02] & 59.11 [58.23, 60.36] \\
+900 & 127.71 [127.65, 128.29] & 17.20 [17.18, 17.20] & 68.23 [67.94, 69.47] \\
+1200 & 230.02 [229.94, 231.90] & 21.87 [21.47, 22.34] & 84.04 [83.63, 84.34] \\
+1600 & 416.68 [416.42, 419.51] & 26.71 [26.60, 27.59] & 119.20 [118.77, 119.22] \\
+\bottomrule
+\end{tabular}
+\end{table*}

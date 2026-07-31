@@ -1,0 +1,225 @@
+# Locked configuration for the experiments reported in the Harmora paper.
+# Change values only for new experiments; the validation code protects the exact
+# seven-model, eleven-task, four-seed paper setting.
+
+experiment_name: harmora_11tasks_7models_downstream_multiseed_metrics
+seeds:
+- 11
+- 22
+- 33
+- 44
+sample_seed: 2025
+augmentation_seed: 2026
+deterministic: true
+expected_model_count: 7
+expected_task_count: 11
+lock_exact_experiment_set: true
+paths:
+  output_dir: outputs/full_experiment
+  model_cache_dir: cache/models
+  data_cache_dir: cache/data
+  metrics_package_dir: harmora_metrics
+models:
+- alias: minilm_l6
+  hf_name: sentence-transformers/all-MiniLM-L6-v2
+  trust_remote_code: false
+  pooling: mean
+  prompt: null
+- alias: mpnet_base
+  hf_name: sentence-transformers/all-mpnet-base-v2
+  trust_remote_code: false
+  pooling: mean
+  prompt: null
+- alias: e5_base_v2
+  hf_name: intfloat/e5-base-v2
+  trust_remote_code: false
+  pooling: mean
+  prompt: 'query: '
+- alias: e5_large_v2
+  hf_name: intfloat/e5-large-v2
+  trust_remote_code: false
+  pooling: mean
+  prompt: 'query: '
+- alias: bge_base_en_v15
+  hf_name: BAAI/bge-base-en-v1.5
+  trust_remote_code: false
+  pooling: cls
+  prompt: null
+- alias: bge_large_en_v15
+  hf_name: BAAI/bge-large-en-v1.5
+  trust_remote_code: false
+  pooling: cls
+  prompt: null
+- alias: snowflake_arctic_embed_m
+  hf_name: Snowflake/snowflake-arctic-embed-m
+  trust_remote_code: true
+  pooling: cls
+  prompt: null
+mteb:
+  languages:
+  - eng
+  allow_missing_tasks: false
+  include_task_names:
+  - Banking77Classification.v2
+  - EmotionClassification.v2
+  - HUMEEmotionClassification
+  - ArXivHierarchicalClusteringP2P
+  - ArXivHierarchicalClusteringS2S
+  - BiorxivClusteringP2P.v2
+  - LegalBenchPC
+  - STS15
+  - STS16
+  - STSBenchmark
+  - SICK-R
+sampling:
+  max_samples_per_task: 512
+  labeled_split_priority:
+  - test
+  - validation
+  - dev
+  - train
+  pair_split_priority:
+  - test
+  - validation
+  - dev
+  - train
+  overwrite_cache: false
+encoding:
+  max_length: 256
+  batch_size: 16
+  device: auto
+  dtype: float32
+  include_embedding_layer: true
+  cache_embeddings: true
+downstream:
+  test_size: 0.3
+  classification:
+    evaluator: logistic_regression
+    primary_metric: accuracy
+    standardize_from_train_only: true
+    max_iter: 3000
+  clustering:
+    evaluator: minibatch_kmeans
+    primary_metric: v_measure
+    n_init: 20
+    batch_size: 500
+  pair_classification:
+    evaluator: cosine_similarity
+    primary_metric: average_precision
+  sts:
+    evaluator: cosine_similarity
+    primary_metric: spearman
+metric_extraction:
+  compute_augmentation_metrics: true
+  augmentation_drop_probability: 0.12
+  augmentations:
+    infonce_views: 2
+    dime_views: 2
+    lidar_views: 16
+  cache_augmented_embeddings: true
+  skip_metric_errors: false
+metrics:
+  names:
+  - harmora
+  - matrix_entropy
+  - participation_ratio
+  - anisotropy
+  - curvature
+  - spectral_gap
+  - infonce
+  - dime
+  - lidar
+  primary_fields:
+    harmora: score
+    matrix_entropy: maxEntropy
+    participation_ratio: normalized_rank
+    anisotropy: anisotropy
+    curvature: raw
+    spectral_gap: lambda2
+    infonce: raw
+    dime: maxEntropy
+    lidar: maxEntropy
+  directions:
+    harmora.score: 1
+    matrix_entropy.maxEntropy: 1
+    participation_ratio.normalized_rank: 1
+    anisotropy.anisotropy: -1
+    curvature.raw: -1
+    spectral_gap.lambda2: 1
+    infonce.raw: -1
+    dime.maxEntropy: 1
+    lidar.maxEntropy: 1
+  config:
+    harmora_sigma_l2: 1.0
+    harmora_K_l: 10
+    harmora_K_max: 80
+    graph_standardize: false
+    graph_bandwidth: median
+    graph_k_nn: null
+    entropy_alpha: 1.0
+    entropy_normalizations:
+    - maxEntropy
+    infonce_temperature: 0.1
+    infonce_normalize: true
+    curvature_k: 1
+    eps: 1.0e-12
+correlation:
+  methods:
+  - pearson
+  - spearman
+  - kendall
+  - distance
+  target_name: downstream_primary_score
+  min_layers: 3
+  confidence_level: 0.95
+  calibrations:
+  - raw
+  - model_logratio
+  top_k_values:
+  - 1
+  - 3
+  - 5
+aggregation:
+  confidence_level: 0.95
+  save_seed_curves: true
+  save_pdf_figures: true
+  save_summary_figures: true
+paper_analysis:
+  output_dir: artifacts/generated
+  bandwidth:
+    fixed_k: 10
+    curve_max_k: 47
+    spectral_max_k: 80
+    support_max_k: 80
+  adaptive_precision:
+    fractions:
+    - 0.25
+    - 0.5
+    - 0.75
+    - 1.0
+    max_samples: 192
+    min_samples: 12
+    calibration_views: 5
+    evaluation_views: 5
+    subsample_seeds:
+    - 11
+    - 29
+    - 47
+    - 71
+    - 101
+    top_k: 5
+    precision_shuffles: 50
+    shrinkage_strength: 5.0
+    task_bootstrap: 10000
+    validation_tolerance: 1.0e-06
+  runtime:
+    expected_candidates: 106
+    shortlist_size: 5
+    eig_tolerance: 1.0e-08
+    eig_maxiter: 5000
+    real_warmups: 1
+    real_repeats: 3
+    scaling_warmups: 1
+    scaling_repeats: 5
+    validation_cases: 12
+    validation_max_samples: 300
