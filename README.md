@@ -350,7 +350,7 @@ pytest -q tests
 
 Citation information is provided in:
 
-[`CITATION.cff`](CITATION.cff)
+Anonymous Authors
 
 Please cite the Harmora paper when using this code or its artifacts.
 
