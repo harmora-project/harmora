@@ -1,31 +1,36 @@
 # Harmora
 
-Official reproducibility package for:
+Official implementation and reproducibility package for:
 
 > **Harmora: Label-Free Selection of Representations in Language Embedding Models via Laplacian Harmonics**
 
-This repository is intentionally focused on the experiments and artifacts used in the paper. Historical backups, obsolete generalization workflows, duplicate scripts, intermediate debugging outputs, and unused figures have been removed.
+This repository contains the code, experiment configurations, analyses, and reference results used in the paper.
 
-## What is included
+## Main features
 
-- the locked **7-model × 11-task × 4-seed** experiment configuration;
-- Harmora and the eight label-free baselines used in the paper;
-- layer-wise downstream evaluation and metric extraction;
-- within-model and cross-model selection analyses;
+The repository includes:
+
+- the fixed **7-model × 11-task × 4-seed** experiment configuration;
+- the Harmora metric;
+- eight label-free baseline metrics;
+- layer-wise downstream evaluation;
+- within-model representation selection;
+- cross-model representation selection;
 - bandwidth and spectral-depth analyses;
-- adaptive-precision ablation;
-- controlled runtime and eigensolver validation;
-- exact submitted figures, tables, and frozen result CSV files;
-- unit tests, integrity checks, and SHA-256 artifact manifests.
+- adaptive-precision experiments;
+- runtime and eigensolver analyses;
+- reference figures, tables, and result CSV files;
+- unit tests and reproducibility checks;
+- SHA-256 artifact manifests.
 
-## Repository layout
+## Repository structure
 
 ```text
 harmora-paper-code/
 ├── configs/
-│   └── paper.yaml                 # locked paper experiment
-├── src/harmora_downstream/        # core data, encoding, metrics, evaluation
-├── harmora_metrics/metrics/       # Harmora + baseline metric implementations
+│   └── paper.yaml                 # Main experiment configuration
+├── src/harmora_downstream/        # Data, encoding, metrics, and evaluation
+├── harmora_metrics/metrics/       # Harmora and baseline implementations
 ├── scripts/
 │   ├── check_environment.py
 │   ├── run_full_pipeline.py
@@ -33,82 +38,100 @@ harmora-paper-code/
 │   ├── reproduce_paper.py
 │   ├── validate_reproduction.py
 │   └── run_smoke_test.py
-├── experiments/                   # focused paper-analysis generators
-├── reference/                     # exact paper data, figures, and LaTeX tables
-├── paper/                         # manuscript, supplement, checklist
-├── tests/
-├── docs/
-└── artifacts/                     # generated locally; ignored by Git
+├── experiments/                   # Paper analysis scripts
+├── reference/                     # Reference data, figures, and LaTeX tables
+├── paper/                         # Manuscript, supplement, and checklist
+├── tests/                         # Unit tests
+├── docs/                          # Documentation
+└── artifacts/                     # Locally generated files
 ```
 
----
+## Quick reproduction
 
-# 1. Fastest path: reproduce the submitted paper artifacts
-
-This path does **not** download models or datasets. It materializes the exact frozen figures, LaTeX tables, and result CSV files associated with the submitted manuscript.
+To generate the reference figures, LaTeX tables, and result CSV files, run:
 
 ```bash
 python scripts/reproduce_paper.py
 python scripts/validate_reproduction.py
 ```
 
-Outputs:
+The generated files are written to:
 
 ```text
 artifacts/paper/
 ```
 
-The validation checks the experiment dimensions and the principal reported results, including:
+This process does not download models or datasets.
 
-- within-model Harmora Spearman: `0.432387`;
-- strongest within-model baseline: `0.270963`;
-- selected-candidate percentile: `0.845779`;
-- cross-model NDCG@1: `0.843242`;
-- cross-model NDCG@3: `0.795474`;
-- Top-5 overlap: `0.372727`;
-- exhaustive runtime: `762.298868 s`;
-- Harmora-shortlist runtime: `166.995998 s`;
-- speedup: `4.564773×`.
-
-To recreate the artifact directory from scratch:
+To recreate the artifact directory and replace existing files, run:
 
 ```bash
 python scripts/reproduce_paper.py --force
 ```
 
----
+### Reference results
 
-# 2. Installation
+The validation script checks the experiment dimensions and the main reported results:
+
+| Result | Value |
+|---|---:|
+| Within-model Harmora Spearman | `0.432387` |
+| Strongest within-model baseline | `0.270963` |
+| Selected-candidate percentile | `0.845779` |
+| Cross-model NDCG@1 | `0.843242` |
+| Cross-model NDCG@3 | `0.795474` |
+| Top-5 overlap | `0.372727` |
+| Exhaustive runtime | `762.298868 s` |
+| Harmora-shortlist runtime | `166.995998 s` |
+| Speedup | `4.564773×` |
+
+## Installation
 
 Python 3.10 or newer is required. Python 3.11 is recommended.
 
-## Virtual environment
+### Linux and macOS
 
-### Linux/macOS
+Create and activate a virtual environment:
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
+```
+
+Install the package:
+
+```bash
 python -m pip install --upgrade pip
 pip install -e .
 ```
 
 ### Windows PowerShell
 
+Create and activate a virtual environment:
+
 ```powershell
 py -3.11 -m venv .venv
 .\.venv\Scripts\Activate.ps1
+```
+
+Install the package:
+
+```powershell
 python -m pip install --upgrade pip
 pip install -e .
 ```
 
-For development and tests:
+### Development installation
+
+To install the development and testing dependencies, run:
 
 ```bash
 pip install -e ".[dev]"
 ```
 
-A Conda environment file is also provided:
+### Conda installation
+
+A Conda environment file is also available:
 
 ```bash
 conda env create -f environment.yml
@@ -117,65 +140,94 @@ conda activate harmora
 
 ## Environment check
 
+Before running the experiments, check the environment:
+
 ```bash
 python scripts/check_environment.py
 ```
 
-This verifies the locked model/task set, required libraries, device selection, and the bundled metric implementation.
+This script checks:
 
----
+- the configured models and tasks;
+- the required Python libraries;
+- the selected computing device;
+- the included metric implementations.
 
-# 3. Smoke test
+## Smoke test
 
-Run this before a full experiment:
+Run the smoke test before starting the full experiment:
 
 ```bash
 python scripts/run_smoke_test.py
 ```
 
-It performs:
+The smoke test performs:
 
-1. unit tests for configuration, sampling, deterministic splits, evaluators, aggregation, and metric computation;
-2. exact paper-artifact materialization;
-3. validation of the key paper results.
+1. unit tests for configuration and sampling;
+2. tests for deterministic data splits;
+3. tests for evaluators and aggregation;
+4. tests for metric computation;
+5. reference artifact generation;
+6. validation of the main paper results.
 
----
+## Full experiment
 
-# 4. Full experiment rerun
+The full experiment downloads the configured Hugging Face models and MTEB datasets.
 
-The full rerun downloads the configured Hugging Face models and MTEB datasets. It caches task samples and embeddings, so interrupted runs can normally resume without repeating completed work.
+Run the complete pipeline with:
 
 ```bash
 python scripts/run_full_pipeline.py
 ```
 
-The stages are:
+The pipeline uses cached task samples and embeddings. An interrupted run can normally continue without repeating completed work.
 
-1. `samples` — resolve the eleven tasks and build one fixed sample per task;
-2. `downstream` — evaluate every model-layer candidate with four fixed seeds;
-3. `metrics` — compute Harmora and eight baselines on the same cached representations;
-4. `aggregate` — aggregate downstream utilities across seeds;
-5. `correlate` — compute within-model and cross-model evaluation quantities.
+### Pipeline stages
 
-Outputs are written to:
+The pipeline contains five stages:
+
+1. `samples`  
+   Resolves the eleven tasks and creates one fixed sample for each task.
+
+2. `downstream`  
+   Evaluates every model-layer candidate using four fixed seeds.
+
+3. `metrics`  
+   Computes Harmora and the eight baseline metrics on the cached representations.
+
+4. `aggregate`  
+   Aggregates downstream utilities across the four seeds.
+
+5. `correlate`  
+   Computes within-model and cross-model evaluation results.
+
+The outputs are written to:
 
 ```text
 outputs/full_experiment/
 ```
 
-## Resume from a stage
+### Resume from a specific stage
+
+To continue from the metrics stage:
 
 ```bash
 python scripts/run_full_pipeline.py --from-stage metrics
 ```
 
-Run only a range:
+### Run a selected range of stages
+
+For example, to run from downstream evaluation to aggregation:
 
 ```bash
-python scripts/run_full_pipeline.py --from-stage downstream --to-stage aggregate
+python scripts/run_full_pipeline.py \
+  --from-stage downstream \
+  --to-stage aggregate
 ```
 
-Run a small subset for debugging:
+### Run a small experiment
+
+A smaller run can be used for testing or debugging:
 
 ```bash
 python scripts/run_full_pipeline.py \
@@ -185,7 +237,7 @@ python scripts/run_full_pipeline.py \
   --to-stage correlate
 ```
 
-PowerShell equivalent:
+Windows PowerShell:
 
 ```powershell
 python scripts/run_full_pipeline.py `
@@ -195,49 +247,69 @@ python scripts/run_full_pipeline.py `
   --to-stage correlate
 ```
 
-Use `--overwrite` only when cached samples, embeddings, and completed results must be rebuilt.
+Use `--overwrite` only when the cached samples, embeddings, and completed results must be rebuilt.
 
----
+## Paper analyses
 
-# 5. Generate the paper analyses from a full rerun
-
-After the core experiment finishes:
+After the full experiment finishes, generate the paper analyses with:
 
 ```bash
 python scripts/run_paper_analyses.py
 ```
 
-This generates only the analyses used in the manuscript:
+This command generates:
 
-- within-model ranking figure and tables;
-- cross-model selection figure and tables;
-- bandwidth and spectral-depth diagnostics;
-- adaptive-precision ablation;
-- runtime and eigensolver analyses.
+- within-model ranking figures and tables;
+- cross-model selection figures and tables;
+- bandwidth analyses;
+- spectral-depth analyses;
+- adaptive-precision experiments;
+- runtime analyses;
+- eigensolver analyses.
 
-Outputs:
+The generated files are written to:
 
 ```text
 artifacts/generated/
 ```
 
-Individual analyses can be selected:
+### Run selected analyses
+
+To run only the within-model, cross-model, and spectral analyses:
 
 ```bash
 python scripts/run_paper_analyses.py --only within cross spectral
+```
+
+To run the adaptive-precision analysis on a CUDA device:
+
+```bash
 python scripts/run_paper_analyses.py --only precision --device cuda
+```
+
+To run the runtime analysis without the real-runtime experiment:
+
+```bash
 python scripts/run_paper_analyses.py --only runtime --skip-real-runtime
 ```
 
-The exact submitted vector/raster assets remain under `reference/figures/`. Small visual differences can occur when plots are rerendered on another operating system because of fonts and Matplotlib backends.
+The reference vector and raster figures are stored in:
 
----
+```text
+reference/figures/
+```
 
-# 6. Exact paper configuration
+Small visual differences may appear when figures are generated on different operating systems. These differences can be caused by fonts or Matplotlib backends.
 
-The complete configuration is in [`configs/paper.yaml`](configs/paper.yaml).
+## Experiment configuration
 
-## Models
+The complete experiment configuration is available in:
+
+[`configs/paper.yaml`](configs/paper.yaml)
+
+### Models
+
+The experiment uses seven language embedding models:
 
 - MiniLM-L6
 - MPNet-base
@@ -247,57 +319,78 @@ The complete configuration is in [`configs/paper.yaml`](configs/paper.yaml).
 - BGE-large-en-v1.5
 - Snowflake Arctic Embed M
 
-## Tasks
+### Tasks
 
-- Classification: Banking77, Emotion, HUMEEmotion
-- Clustering: ArXiv-P2P, ArXiv-S2S, Biorxiv-P2P
-- Pair classification: LegalBenchPC
-- STS: STS15, STS16, STSBenchmark, SICK-R
+The experiment uses eleven tasks.
 
-## Fixed settings
+#### Classification
 
-- downstream seeds: `11, 22, 33, 44`;
-- shared sample seed: `2025`;
-- maximum task sample size: `512`;
-- Harmora bandwidth: `K=10`;
-- Harmora variance: `sigma²=1`;
-- candidate pool: `106` model-layer candidates per task;
-- shortlist size: `5`.
+- Banking77
+- Emotion
+- HUMEEmotion
 
-The configuration loader rejects silent changes to the seven models or eleven tasks when `lock_exact_experiment_set: true`.
+#### Clustering
 
----
+- ArXiv-P2P
+- ArXiv-S2S
+- Biorxiv-P2P
 
-# 7. Reproducibility modes
+#### Pair classification
 
-## Exact artifact reproduction
+- LegalBenchPC
 
-Use:
+#### Semantic textual similarity
+
+- STS15
+- STS16
+- STSBenchmark
+- SICK-R
+
+### Fixed settings
+
+| Setting | Value |
+|---|---|
+| Downstream seeds | `11, 22, 33, 44` |
+| Shared sample seed | `2025` |
+| Maximum task sample size | `512` |
+| Harmora bandwidth | `K = 10` |
+| Harmora variance | `sigma² = 1` |
+| Candidate pool | `106` model-layer candidates per task |
+| Shortlist size | `5` |
+
+When the following option is enabled, the configuration loader does not allow silent changes to the seven models or eleven tasks:
+
+```yaml
+lock_exact_experiment_set: true
+```
+
+## Reproducibility options
+
+There are two main ways to use this repository.
+
+### Reference result reproduction
+
+Use this option to generate the reference figures, tables, and result files without downloading models or datasets:
 
 ```bash
 python scripts/reproduce_paper.py
+python scripts/validate_reproduction.py
 ```
 
-This is the appropriate command when the goal is to obtain the exact figures and tables used in the manuscript immediately.
+### Independent computational rerun
 
-## Independent computational rerun
-
-Use:
+Use this option to independently recompute the embeddings, downstream utilities, label-free scores, and analyses:
 
 ```bash
 python scripts/run_full_pipeline.py
 python scripts/run_paper_analyses.py
 ```
 
-This is the appropriate command when the goal is to independently recompute embeddings, downstream utilities, label-free scores, and analyses.
+## Data and cache policy
 
----
+Downloaded datasets, pretrained model weights, and large embedding caches are not stored in the repository.
 
-# 8. Data and cache policy
-
-The repository does not commit downloaded datasets, model weights, or large embedding caches.
-
-Local-only directories:
+The following directories are used only for local files:
 
 ```text
 cache/models/
@@ -306,56 +399,43 @@ outputs/full_experiment/
 artifacts/generated/
 ```
 
-These paths are excluded by `.gitignore`.
+These paths are excluded through `.gitignore`.
 
-The frozen result files required to verify the paper are intentionally tracked under:
+The reference result files required for validation are stored in:
 
 ```text
 reference/data/
 ```
 
----
+## Tests
 
-# 9. Tests
+### Linux and macOS
+
+Run the test suite with:
 
 ```bash
 PYTHONPATH=src pytest -q tests
 ```
 
-On Windows PowerShell:
+### Windows PowerShell
+
+Run:
 
 ```powershell
 $env:PYTHONPATH = "src"
 pytest -q tests
 ```
 
----
+## Citation
 
-# 10. Release validation
+Citation metadata is provided in:
 
-The packaged repository was checked with:
+[`CITATION.cff`](CITATION.cff)
 
-```bash
-python -m compileall -q src harmora_metrics scripts experiments tests
-PYTHONPATH=src pytest -q tests
-python scripts/reproduce_paper.py --force
-python scripts/validate_reproduction.py
-python scripts/run_smoke_test.py
-```
+Please use this file when citing the repository or the paper.
 
-The lightweight release checks pass, and the within-model and cross-model
-figure/table generators were also exercised against the frozen seed-level
-reference inputs. See [`PACKAGE_VALIDATION.md`](PACKAGE_VALIDATION.md).
+## License
 
-The complete seven-model, eleven-task run was not repeated while assembling
-this archive because it requires external model/dataset downloads and
-substantial compute. The commands and locked configuration for that independent
-rerun are included above.
+The code is released under the MIT License.
 
----
-
-# 11. Citation and license
-
-Citation metadata is provided in [`CITATION.cff`](CITATION.cff).
-
-The code is released under the MIT License. Dataset and pretrained-model licenses remain governed by their original providers.
+The datasets and pretrained models are covered by the licenses of their original providers.
