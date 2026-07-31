@@ -20,8 +20,6 @@ The repository includes:
 - adaptive-precision experiments;
 - runtime and eigensolver analyses;
 - reference figures, tables, and result CSV files;
-- unit tests and reproducibility checks;
-- SHA-256 artifact manifests.
 
 ## Repository structure
 
